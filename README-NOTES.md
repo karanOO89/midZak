@@ -27,13 +27,13 @@ OR
 
 *Because as a user I want to buy the items from the webApp.*
 
-## VERBS
+**VERBS**
 
 * ADMIN: POST, REMOVE, SEND 
 
 * USER: VIEW, FILTER, FAVOURITE, SEND , BUY
 
-## NOUNS
+**NOUNS**
 
 * Items, Messages, Favourites 
 
