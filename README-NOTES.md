@@ -37,7 +37,7 @@ OR
 
 * Items, Messages, Favourites 
 
-##Stack Requirements
+# Stack Requirements
 > Your projects must use:
 * ES6 for server-side (NodeJS) code
 * NodeJS
