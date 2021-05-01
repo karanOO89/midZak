@@ -1,5 +1,4 @@
 # Mid-Terms-LH
-GROUP MEMBERS: Karan, Arvin, Zea
 
 > As an admin:
 1. I want to post items which can be seen by others.
