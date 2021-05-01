@@ -23,7 +23,7 @@ OR
 1. See featured items on a main feed.
 2. Filter items by price.
 3. Favourite items to check up on them later.
-4. Send messages to the user that is listing the item.
+4. Send messages to the user that is listing the item (to negotiate on price).
 
 *Because as a user I want to buy the items from the webApp.*
 
