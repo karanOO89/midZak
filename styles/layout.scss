@@ -1,9 +1,19 @@
 // See: https://sass-lang.com/
 
 body {
-  background-color: #EEE;
-
+  background-color:rgb(139, 141, 135);
+  display:flex;
+  justify-content: center;
+  margin-top: 3em;
+  
   h1 {
     color: #244751;
+  }
+ 
+  .new-product-form__field-wrapper{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: .5em;
   }
 }

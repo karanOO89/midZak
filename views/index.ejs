@@ -12,6 +12,54 @@
   </head>
 
   <body>
-    <h1>Hello World!</h1>
+    
+    <form action="/api/properties" method="post" id="new-product-form" class="new-product">
+      
+      
+      <div class="new-product-form__field-wrapper">
+        <label for="new-product-category">Category</label>
+        <input placeholder="Category Name" type="text" name="category" id="new-product-category">
+      </div>
+      <div class="new-product-form__field-wrapper">
+        <label for="new-product-form__name">Product Name</label>
+        <input placeholder="Product Name" type="text" name="Product Name" id="new-product-form__name">
+      </div>
+      <div class="new-product-form__field-wrapper">
+        <label for="new-product-form__option">Option</label>
+        <input type="text" name="option" placeholder="Option" id="new-product-form__option">
+      </div>
+      <div class="new-product-form__field-wrapper">
+        <label for="new-product-price">Price</label>
+        <input type="number" name="option" placeholder="$" id="new-product-price">
+      </div>
+      
+      <div class="new-product-form__field-wrapper">
+        <label for="new-product-form__thumbnail">Thumbnail Image</label>
+        <input placeholder="Thumbnail Image" type="text" name="thumbnail_photo_url" id="new-product-form__thumbnail">
+      </div>
+      <div class="new-product-form__field-wrapper">
+        <label for="new-product-form__image">Image</label>
+        <input placeholder="Image" type="text" name="thumbnail_photo_url" id="new-product-form__image">
+      </div>
+        </div>
+        <div class="new-product-form__field-wrapper">
+          <label for="new-product-form__stock">Stock</label>
+          <input placeholder="Stock" type="number" name="stock" id="new-product-form__stock">
+        </div>
+          </div>
+
+        <div class="new-product-form__field-wrapper">
+          <label for="new-product-description">Description</label>
+          <textarea placeholder="Description" name="description" id="new-product-description" cols="30" rows="10"></textarea>
+        </div>
+      </div>
+      
+      <div class="new-product-form__field-wrapper">
+        <button>Create</button>
+        <a id="property-form__cancel" href="#">Cancel</a>
+      </div>
+      
+    </form>
   </body>
-</html>
+  </html>
+  
