@@ -22,12 +22,12 @@ OR
 4. send messages to the user that is listing the item.
 *Because I want to buy the items I want*
 
-# VERBS
+## VERBS
 
 * ADMIN: POST, REMOVE, SEND 
 
 * USER: VIEW, FILTER, FAVOURITE, SEND , BUY
 
-# NOUNS
+## NOUNS
 
 * Items, Messages, Favourites 
