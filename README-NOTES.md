@@ -15,8 +15,7 @@ When _______________________ ,
 Then  ______________________ .
 OR
 
-> As a user ,
-I should be able to,
+> As a user:
 1. see featured items on a main feed.
 2. filter items by price.
 3. favourite items to check up on them later.
