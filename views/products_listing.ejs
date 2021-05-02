@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Home Page</title>
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout_listing.css" type="text/css" />
+
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+    <link rel="stylesheet" media="screen" href="assets/css/style.css" />
+
+  </head>
+
+  <body>
+    <main>
+      <img src="/vagrant/w6/midZak/routes/upload/Screenshotfrom2021-04-1521-43-13.png">
+      <% for(let ele in data ) { %>
+      <article>
+        <tr>
+          <div><td><%= data[ele]["thumbnail"] %><img src="/upload/Screenshotfrom2021-04-1521-43-13.png"></td></div>
+        </tr>
+      </article>
+      <% } %>
+    </main>
+  </body>
+</html>

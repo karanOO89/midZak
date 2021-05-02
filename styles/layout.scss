@@ -9,11 +9,19 @@ body {
   h1 {
     color: #244751;
   }
+  #file{
+    visibility: hidden;
+  }
  
   .new-product-form__field-wrapper{
     display:flex;
     flex-direction: row;
     justify-content: space-between;
     padding: .5em;
+    #thumbnail{
+      display: flex;
+      // flex-direction: row;
+      padding-left: 3em;
+    }
   }
 }

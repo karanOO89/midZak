@@ -23,3 +23,16 @@ module.exports = (db) => {
   });
   return router;
 };
+
+// router.post("/thumbnail", (req, res) => {
+//   let thumbnail;
+//   let uploadPath;
+//   // thumbnail = req.files.thumbnail;
+//   thumbnail = req.files.thumbnail;
+//   uploadPath = __dirname + "/upload/" + thumbnail.name;
+//   thumbnail.mv(uploadPath ,function (err){
+//       // res.send('file uploaded')
+//   });
+
+
+// });

@@ -8,6 +8,8 @@ CREATE TABLE products (
   is_approved Boolean NOT NULL DEFAULT FALSE,
   is_for_sale Boolean NOT NULL DEFAULT FALSE,
   user_id int,
-  thumbnail BYTEA NOT NULL,
+  thumbnail  VARCHAR(255) NOT NULL,
   imge_id int
 );
+GRANT ALL PRIVILEGES ON products TO labber;
+GRANT USAGE, SELECT ON sequence products_id_seq TO labber;

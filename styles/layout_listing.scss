@@ -1,0 +1,23 @@
+// See: https://sass-lang.com/
+
+body {
+  display:flex;
+  justify-content:flex-end;
+  padding-right: 1em;
+  main{
+    flex-wrap: wrap;
+    width: 85%;
+    background-color:rgb(92, 109, 59);
+    display:flex;
+    justify-content: flex-start;
+    // align-items: center;
+  
+  article{
+    // justify-content: space-evenly;
+    // flex-direction: row;
+    padding: 1em;
+    // padding-right: 10em;
+  }
+    margin-top: 5em;
+  }
+}
