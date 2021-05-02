@@ -9,7 +9,6 @@ const bodyParser = require("body-parser");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
-const port = process.env.PORT || 3000;
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -35,13 +34,13 @@ app.use(express.static("public"));
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
-const productRoutes = require("./routes/products.js")
+const productRoutes = require("./routes/products")
 const widgetsRoutes = require("./routes/widgets");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
-app.use('/products', productRoutes);
+app.use('/products', productRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 

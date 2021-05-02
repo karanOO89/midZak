@@ -10,3 +10,5 @@ CREATE TABLE users (
   user_type_id int NOT NULL,
   address_id int NOT NULL
 );
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO labber;
+GRANT USAGE, SELECT ON sequence users_id_seq TO labber;

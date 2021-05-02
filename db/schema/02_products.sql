@@ -9,7 +9,10 @@ CREATE TABLE products (
   stock int NOT NULL,
   is_approved Boolean NOT NULL DEFAULT false,
   is_for_sale Boolean NOT NULL DEFAULT true,
-  user_id int NOT NULL,
+  user_id int NOT NULL DEFAULT 1,
   thumbnail VARCHAR(255) NOT NULL,
-  imge_id int
+  imge_id int DEFAULT 0
 );
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO labber;
+GRANT USAGE, SELECT ON sequence products_id_seq TO labber;
+

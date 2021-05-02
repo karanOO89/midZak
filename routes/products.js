@@ -8,22 +8,70 @@
 
 const express = require('express');
 const router = express.Router();
-const productFunctions = require("../db/products_queries")
+//const productFunctions = require("../db/products_queries")
 
-module.exports = () => {
+module.exports = (db) => {
+
+  // router.use((req, res, next) => {
+  //   if(!req.cookies.user_id) {
+  //     res.redirect('/login');
+  //   }
+  //   next;
+  // });
+
   // GET /products
   router.get('/', (req, res) => {
-    productFunctions.getProducts()
-      .then((products) => {
-        res.json(products);
+    db.query('SELECT * From products;')
+      .then(data => {
+        const products = data.rows;
+        res.json({ products });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
       });
+  });
+
+  // POST /products
+   router.post('/', (req, res) => {
+    let query = `INSERT INTO products
+      (name,
+      description,
+      price,
+      stock,
+      thumbnail
+      ) VALUES($1,$2,$3,$4,$5)`;
+
+    const values= [
+      req.body.product_name,
+      req.body.description,
+      Number(req.body.price),
+      Number(req.body.stock),
+      req.body.thumbnail
+    ];
+    db.query(query,values)
+     .then((res) => {
+       res.rows;
+     })
+     .catch(err => {
+       res
+         .status(500)
+         .json({ error: err.message });
+     });
   })
 
   //GET /products/:id
   router.get('/:id', (req, res) => {
-    productFunctions.getProductById(req.params.id)
-    .then((product) => {
-      res.json(product);
+    db.query('SELECT * From products WERE id = $1', [id])
+    .then((res) => {
+      res.rows[0];
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
     });
   });
+  return router;
 }
