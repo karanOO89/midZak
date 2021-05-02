@@ -1,5 +1,5 @@
 const pg = require('pg');
-const Client = pg.client;
+const Client = pg.Client;
 
 const config = {
   user: process.env.DB_USER,
@@ -11,7 +11,7 @@ const config = {
 
 const client = new Client(config);
 
-pool.connect(() => {
+client.connect(() => {
   console.log('connected to database');
 });
 
