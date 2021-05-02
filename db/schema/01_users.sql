@@ -7,8 +7,16 @@ CREATE TABLE users (
   email VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
   phone VARCHAR(255) NOT NULL,
-  user_type_id int NOT NULL,
-  address_id int NOT NULL
+  user_type_id INTEGER NOT NULL REFERENCES user_type(id) ON DELETE CASCADE,
+  address_id INTEGER NOT NULL
 );
+
+DROP TABLE IF EXISTS user_type CASCADE;
+CREATE TABLE user_type (
+  id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  user_type_name TEXT NOT NULL
+);
+
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO labber;
 GRANT USAGE, SELECT ON sequence users_id_seq TO labber;

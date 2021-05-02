@@ -26,6 +26,10 @@
 
       <div class="new-product-form__field-wrapper">
         <label for="new-product-form__thumbnail">Thumbnail Image</label>
+        <form action="products/upload/photo" enctype="multipart/form-data" method="POST">
+          <input type="file" name="myImage" accept="image/*" />
+          <input type="submit" value="Upload Photo"/>
+        </form>
         <input placeholder="Thumbnail Image" type="file" name="thumbnail" id="new-product-form__thumbnail">
       </div>
 

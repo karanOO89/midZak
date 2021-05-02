@@ -8,7 +8,11 @@
 
 const express = require('express');
 const router = express.Router();
+const multer  = require('multer')
+const upload = multer({});
+
 //const productFunctions = require("../db/products_queries")
+
 
 module.exports = (db) => {
 
@@ -34,7 +38,7 @@ module.exports = (db) => {
   });
 
   // POST /products
-   router.post('/', (req, res) => {
+   router.post('/', upload.single(`/upload/photo`), (req, res) => {
     let query = `INSERT INTO products
       (name,
       description,
@@ -48,8 +52,9 @@ module.exports = (db) => {
       req.body.description,
       Number(req.body.price),
       Number(req.body.stock),
-      req.body.thumbnail
+      req.file.buffer.toString('base64')
     ];
+
     db.query(query,values)
      .then((res) => {
        res.rows;
