@@ -9,10 +9,12 @@
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+    <script type="text/javascript" src="/views/product-page.js"></script>
   </head>
 
+
   <body>
-    <h1>Product Title</h1>
+    <h1 id="product-name">Product name</h1>
     <h2>Subtitle</h2>
     <div class="row align-center">
       <div class="product-image-gallery">
@@ -25,12 +27,14 @@
         </ul>
       </div>
     </div>
-    <p>Description: s simply dummy text of the printing and typesetting industry.
+    <p id="product-description">Description: s simply dummy text of the printing and typesetting industry.
       Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
     <form>
-      <label for="fname">Request new price</label><br>
+      <label for="requestnew">Request new price</label><br>
       <input type="integer" id="newprice" name="newprice"><br>
       <input type="submit" value="Submit">
     </form>
   </body>
 </html>
+
+

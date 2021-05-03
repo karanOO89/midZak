@@ -11,7 +11,7 @@ CREATE TABLE products (
   is_for_sale Boolean NOT NULL DEFAULT true,
   user_id INTEGER  NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   thumbnail VARCHAR(255) NOT NULL,
-  imge_id INTEGER  DEFAULT 0
+  img_id INTEGER  DEFAULT 0
 );
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA TO labber;
 GRANT USAGE, SELECT ON sequence products_id_seq TO labber;

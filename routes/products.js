@@ -67,10 +67,10 @@ module.exports = (db) => {
   })
 
   //GET /products/:id
-  router.get('/:id', (req, res) => {
+  router.get('/products/:id', (req, res) => {
     db.query('SELECT * From products WERE id = $1', [id])
-    .then((res) => {
-      res.rows[0];
+    .then((data) => {
+      res.json(data.rows[0]);
     })
     .catch(err => {
       res
@@ -80,3 +80,8 @@ module.exports = (db) => {
   });
   return router;
 }
+
+// Single product page
+app.get("/product-page", (req, res) => {
+  res.render("product-page");
+});
