@@ -42,11 +42,18 @@ app.use(fileUpload());
 const usersRoutes = require("./routes/users");
 const uploadRoutes = require("./routes/upload");
 const viewRoutes = require("./routes/view")
+const productRoutes = require("./routes/products")
+const widgetsRoutes = require("./routes/widgets");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/", uploadRoutes(db));
 app.use("/", viewRoutes(db));
+app.use('/products', productRoutes(db));
+app.use("/api/widgets", widgetsRoutes(db));
+
+// Mount all resource routes
+// Note: Feel free to replace the example routes below with your own
 // Note: mount other resources here, using the same pattern above
 
 
