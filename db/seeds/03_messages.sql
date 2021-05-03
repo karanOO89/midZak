@@ -4,5 +4,3 @@ INSERT INTO messages (message, sender_id, receiver_id, product_id, thread_master
 INSERT INTO thread_masters (product_id, user1_id, user2_id, is_dealt) VALUES (1, 2, 1, false);
 
 
-GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA TO labber;
-GRANT USAGE, SELECT ON sequence users_id_seq TO labber;
