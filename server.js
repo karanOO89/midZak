@@ -44,35 +44,16 @@ const uploadRoutes = require("./routes/upload");
 const viewRoutes = require("./routes/view")
 const productRoutes = require("./routes/products")
 const widgetsRoutes = require("./routes/widgets");
-// Mount all resource routes
-// Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
-app.use("/", uploadRoutes(db));
-app.use("/", viewRoutes(db));
+app.use("/upload", uploadRoutes(db));
 app.use('/products', productRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 
-// Mount all resource routes
-// Note: Feel free to replace the example routes below with your own
-// Note: mount other resources here, using the same pattern above
 
-
-
-
-
-
-
-
-
-
-
-// Home page
-// Warning: avoid creating more routes in this file!
-// Separate them into separate routes files (see above).
-// app.get("/", (req, res) => {
-//   const body = req.body;
-//   res.render("product_upload",body);
-// });
+app.get("/", (req, res) => {
+  const body = req.body;
+  res.render("product_upload",body);
+});
 
 
 app.listen(PORT, () => {
