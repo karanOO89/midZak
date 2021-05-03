@@ -12,7 +12,7 @@
   </head>
 
   <body>
-    <form action="/" method="post" id="new-product-form" class="new-product">
+    <form action="/" method="post" id="new-product-form" enctype="multipart/form-data" class="new-product">
 
       <div class="new-product-form__field-wrapper">
         <label for="new-product-form__name">Product Name</label>
@@ -24,15 +24,6 @@
         <input type="number" name="price" placeholder="$" id="new-product-price">
       </div>
 
-      <div class="new-product-form__field-wrapper">
-        <label for="new-product-form__thumbnail">Thumbnail Image</label>
-        <input placeholder="Thumbnail Image" type="file" name="thumbnail" id="new-product-form__thumbnail">
-      </div>
-
-      <!-- <div class="new-product-form__field-wrapper">
-        <label for="new-product-form__image">Image</label>
-        <input placeholder="Image" type="file" name="thumbna" action="/upload" id="new-product-form__image">
-      </div> -->
 
         <div class="new-product-form__field-wrapper">
           <label for="new-product-form__stock">Stock</label>
@@ -44,12 +35,21 @@
           <textarea placeholder="Description" name="description" id="new-product-description" cols="30" rows="10"></textarea>
         </div>
 
+          <label for="new-product-form__thumbnail">Thumbnail Image</label>
+             <input type="file" name="thumbnail" accept="image/*" id="new-product-form__thumbnail" />
+
         <div class="new-product-form__field-wrapper">
           <button type="submit">Create</button>
-          <a id="property-form__cancel" href="#">Cancel</a>
+          <a id="property-form__cancel" href="/views">Cancel</a>
         </div>
-
     </form>
+      <!-- <form method="post" action ="/thumbnail" enctype="multipart/form-data">
+      <label for="new-product-form__thumbnail">Thumbnail Image</label>
+           <input type="file" name="thumbnail" accept="image/*" id="new-product-form__thumbnail" />
+           <h3 id="file">File Uploaded</h3>
+           <button type="submit">upload</button>
+     </form> -->
 
   </body>
   </html>
+
