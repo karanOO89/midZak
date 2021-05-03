@@ -12,7 +12,7 @@
   </head>
 
   <body>
-    <form action="/products" method="POST" id="new-product-form" class="new-product">
+    <form action="/products" enctype="multipart/form-data" method="POST" id="new-product-form" class="new-product">
 
       <div class="new-product-form__field-wrapper">
         <label for="new-product-form__name">Product Name</label>
@@ -26,18 +26,8 @@
 
       <div class="new-product-form__field-wrapper">
         <label for="new-product-form__thumbnail">Thumbnail Image</label>
-        <form action="products/upload/photo" enctype="multipart/form-data" method="POST">
-          <input type="file" name="myImage" accept="image/*" />
-          <input type="submit" value="Upload Photo"/>
-        </form>
-        <input placeholder="Thumbnail Image" type="file" name="thumbnail" id="new-product-form__thumbnail">
-      </div>
-
-      <!-- <div class="new-product-form__field-wrapper">
-        <label for="new-product-form__image">Image</label>
-        <input placeholder="Image" type="file" name="thumbna" action="/upload" id="new-product-form__image">
-      </div> -->
-
+         <input placeholder="Thumbnail Image" type="file" name="thumbnail" id="new-product-form__thumbnail">
+         </div>
         <div class="new-product-form__field-wrapper">
           <label for="new-product-form__stock">Stock</label>
           <input placeholder="Stock" type="number" name="stock" id="new-product-form__stock">
@@ -49,11 +39,32 @@
         </div>
 
         <div class="new-product-form__field-wrapper">
-          <button type="submit">Create</button>
-          <a id="property-form__cancel" href="#">Cancel</a>
+          <button value="Get me the Product!" type="submit">Create</button>
+          <a id="product-form__cancel" href="#">Cancel</a>
         </div>
-
     </form>
+    <form action="/products" method="get" id="search-product-form" class="search-product-form">
+      <div class="search-product-form__field-wrapper">
+        <label for="search-product-form__seller">Seller</label>
+        <input type="text" name="seller" placeholder="Seller" id="search-product-form__seller">
+      </div>
 
+      <div class="search-product-form__field-wrapper">
+        <label for="search-product-form__minimum-price-per-unit">Minimum Price</label>
+        <input type="number" name="minimum_price_per_unit" placeholder="Minimum Price" id="search-product-form__minimum-price-per-unit">
+        <label for="search-product-form__maximum-price-per-unit">Maximum Price</label>
+        <input type="number" name="maximum_price_per_unit" placeholder="Maximum Price" id="search-product-form__maximum-price-per-unit">
+      </div>
+
+      <div class="search-product-form__field-wrapper">
+        <label for="search-product-form__minimum-rating">Minimum Rating</label>
+        <input type="number" name="minimum_rating" placeholder="Minimum Rating" id="search-product-form__minimum-rating">
+      </div>
+
+      <div class="search-product-form__field-wrapper">
+          <button>Search</button>
+          <a id="search-product-form__cancel" href="#">Cancel</a>
+      </div>
+    </form>
   </body>
 </html>
