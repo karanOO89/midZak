@@ -50,12 +50,16 @@ const viewRoutes = require("./routes/view")
 app.use("/api/users", usersRoutes(db));
 app.use('/products', productRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
-app.use("/", uploadRoutes(db));
-app.use("/", viewRoutes(db));
+app.use("/upload", uploadRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 
 
+app.use("/", viewRoutes(db));
+app.get("/", (req, res) => {
+  // const body = req.body;
+  res.redirect("/");
+});
 
 
 
@@ -67,10 +71,6 @@ app.use("/", viewRoutes(db));
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
-// app.get("/", (req, res) => {
-//   const body = req.body;
-//   res.render("product_upload",body);
-// });
 
 
 app.listen(PORT, () => {

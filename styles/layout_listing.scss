@@ -1,25 +1,32 @@
 // See: https://sass-lang.com/
 
 body {
-  display:flex;
-  justify-content:flex-end;
+  display: flex;
+  justify-content: right;
   padding-right: 1em;
-  main{
+  main {
     flex-wrap: wrap;
     width: 85%;
-    background-color:rgb(92, 109, 59);
-    display:flex;
+    background-color: rgb(230, 235, 221);
+    display: flex;
     justify-content: flex-start;
     // align-items: center;
-  
-  article{
-    // justify-content: space-evenly;
-    // flex-direction: row;
-    padding: 1em;
-    width: 10px;
-    height:1em
-    // padding-right: 10em;
-  }
+
+    // flex-direction: ;
+    #prod_article {
+      //   // justify-content: space-evenly;
+      //   // flex-direction: row;
+      padding: 1em;
+      //   width: 10px;
+      //   height:1em
+      //   // padding-right: 10em;
+      // }
+      img {
+        height: 15em;
+        width: 20em;
+      }
+    }
+
     margin-top: 5em;
   }
 }

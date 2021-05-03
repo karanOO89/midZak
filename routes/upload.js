@@ -5,7 +5,15 @@ app.use(express.static("uploads"));
 
 module.exports = (db) => {
    router.post("/", (req, res) => {
-    const body = req.body;
+     
+     const body = req.body;
+     console.log(body)
+     
+    if (!req.files ||  Object.keys(body).length === 0 || Object.keys(req.files).length === 0 || body.product_name.length === 0
+    || body.description.length === 0 || body.price.length === 0 || body.stock.length === 0 ) {
+      return res.status(400).send('Please provide all information');
+    }
+  
     const name = Date.now();
     let thumbnail = req.files.thumbnail;
     console.log(thumbnail)
@@ -32,7 +40,7 @@ module.exports = (db) => {
       db.query(query, values)
       .then((data) => {
         const upload = data.rows;
-        res.redirect("/view");
+        res.redirect("/");
         // res.render("products_listing", { upload });
       })
       .catch((err) => {
