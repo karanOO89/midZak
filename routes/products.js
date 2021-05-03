@@ -1,8 +1,5 @@
 /*
- * All routes for Products are defined here
- * Since this file is loaded in server.js into api/products,
- *   these routes are mounted onto /users
- * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
+  This file create QuerY Strings and Value Array for That
  */
 
 
@@ -37,16 +34,9 @@ module.exports = (db) => {
 
   // GET /products
   router.get('/', (req, res) => {
-    let query = `SELECT * From products WEHER
-      id in $1 AND
-      name in $2 AND
-      description like '%$3 %' AND
-      price >= $4 AND price < $5 AND
-      stock > $6  AND
-      is_approved = ":false,"is_for_sale":true,"user_id":1,"thumbnail":"","imge_id":0}
-
-     ;`
-    db.query()
+    let queryString = `SELECT * From products LIMIT 10;`;
+    let queryParams =[];
+    db.query(queryString,queryParams)
       .then(data => {
         console.log(req.params)
         const products = data.rows;
@@ -59,6 +49,22 @@ module.exports = (db) => {
       });
   });
 
+  // GET /products/search
+  router.get('/search', (req, res) => {
+    let queryString = `SELECT * From products LIMIT 10;`;
+    let queryParams =[];
+    db.query(queryString,queryParams)
+      .then(data => {
+        console.log(req.params)
+        const products = data.rows;
+        res.json({ products });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
   // POST /products
    router.post('/', upload.single("thumbnail"), (req, res) => {
     let query = `INSERT INTO products
@@ -88,7 +94,15 @@ module.exports = (db) => {
 
   //GET /products/edit/:id
   router.get('/:id', (req, res) => {
-    db.query('SELECT * From products WERE id = $1', [id])
+    let queryString = `SELECT * From products WHERE id = $1`;
+    const queryParams= [
+      req.body.product_name,
+      req.body.description,
+      Number(req.body.price),
+      Number(req.body.stock),
+      req.file
+    ];
+    db.query(queryString,queryParams)
     .then((res) => {
       res.rows[0];
     })
