@@ -5,36 +5,51 @@
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.scss" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script type="text/javascript" src="/scripts/product-page.js"></script>
   </head>
 
+  <header>
+    <h1>
+      <img src ="logo.svg">
+    </h1>
+
+    <!-- search bar -->
+
+    <nav>
+      <a href="favorites.html">Favorites</a>
+      <a href="sell.html">Sell</a>
+      <a href="inbox.html">Inbox</a>
+    </nav>
+  </header>
 
   <body>
-    <h1 id="product-name">Product name</h1>
-    <h2>Subtitle</h2>
-    <div class="row align-center">
-      <div class="product-image-gallery">
-        <img class="pdp-product-image" id="main-product-image" src="https://placehold.it/350x350?text=Image+1" alt="">
-        <br>
-        <ul class="menu product-thumbs align-center">
-          <li> <a class="sim-thumb" data-image="https://placehold.it/350x350?text=Image+1"><img src="https://placehold.it/50x50" alt=""></a> </li>
-          <li> <a class="sim-thumb" data-image="https://placehold.it/350x350?text=Image+2"><img src="https://placehold.it/50x50" alt=""></a> </li>
-          <li> <a class="sim-thumb" data-image="https://placehold.it/350x350?text=Image+3"><img src="https://placehold.it/50x50" alt=""></a> </li>
-        </ul>
-      </div>
+
+    <div class="card">
+      <img class="pdp-product-image" id="main-product-image" src="jeans3.jpg" alt="Denim Jeans" style="width:100%">
+      <h1 id="product-name">Tailored Jeans</h1>
+      <p class="price">$19.99</p>
+      <p id="product-description">Some text about the jeans..</p>
+      <p><button>Contact Seller</button></p>
+      <form>
+        <p><button>Request New Price</button></p>
+        <input type="integer" id="newprice" name="newprice" placeholder="$"><br>
+      </form>
     </div>
-    <p id="product-description">Description: s simply dummy text of the printing and typesetting industry.
-      Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-    <form>
-      <label for="requestnew">Request new price</label><br>
-      <input type="integer" id="newprice" name="newprice"><br>
-      <input type="submit" value="Submit">
-    </form>
+
+    <footer>
+      <img src="logo-footer.svg">
+       <p>Copyright &copy; KAZ 2021</p>
+    </footer>
+
   </body>
+
+
+
 </html>
 
 
