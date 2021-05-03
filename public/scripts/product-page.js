@@ -15,6 +15,10 @@ $(() => {
   }
 
   $("#product-name").text(product.name);
+  $("#product-description").text(product.description);
+  $("#product-price").text(product.price);
+  $("#product-stock").text(product.stock);
+  $("#main-product-image").text(product.thumbnail);
   // $.ajax({
   //   method: "GET",
   //   url: "/products/"+productID
@@ -22,3 +26,5 @@ $(() => {
   //
   // });
 });
+
+
