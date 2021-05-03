@@ -11,6 +11,7 @@ const bodyParser = require("body-parser");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
+const path = require('path');
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -33,12 +34,7 @@ app.use("/styles", sass({
 }));
 app.use(express.static("public"));
 app.use(fileUpload());
-const storage = multer.diskStorage({
-  destination: './pulic/upload/',
-  filename: function(req,filr,cb){
-    cb(null.file.fieldname + '-' + Date.now() + Path2D.extname(file.originalname))
-  }
-})
+// app.use(path());
 // app.use(storage());
 
 // Separated Routes for each Resource

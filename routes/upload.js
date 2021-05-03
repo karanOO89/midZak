@@ -1,13 +1,16 @@
 const express = require("express");
 const router = express.Router();
+const app        = express();
+app.use(express.static("uploads"));
 
 module.exports = (db) => {
    router.post("/", (req, res) => {
     const body = req.body;
-
+    const name = Date.now();
     let thumbnail = req.files.thumbnail;
     console.log(thumbnail)
-    let uploadPath = __dirname + "/upload/" + thumbnail.name.replace(/\s+/g, '');
+    let uploadPath = "/vagrant/w6/midZak/public/uploads/" + name+".png";
+    console.log(uploadPath)
     thumbnail.mv(uploadPath, function (err) {
 
       let query = `INSERT INTO products
@@ -23,7 +26,7 @@ module.exports = (db) => {
         body.description,
         body.price,
         body.stock,
-        uploadPath
+        name
       ];
       console.log(values);
       db.query(query, values)
