@@ -9,8 +9,8 @@ module.exports = (db) => {
     const name = Date.now();
     let thumbnail = req.files.thumbnail;
     console.log(thumbnail)
-    let uploadPath = "/vagrant/w6/midZak/public/uploads/" + name+".png";
-    console.log(uploadPath)
+    let uploadPath = "/vagrant/w6/midZak/public/uploads/" + name + ".png";
+    // console.log(uploadPath)
     thumbnail.mv(uploadPath, function (err) {
 
       let query = `INSERT INTO products
