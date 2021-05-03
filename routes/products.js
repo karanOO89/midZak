@@ -67,10 +67,11 @@ module.exports = (db) => {
   })
 
 
-  // Single product page
-  router.get("/page", (req, res) => {
-    res.render("product-page");
-  });
+    // Single product page
+    router.get("/page", (req, res) => {
+      res.render("product-page");
+    });
+
 
   //GET /products/:id
   router.get('/:id', (req, res) => {
