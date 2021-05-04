@@ -106,6 +106,7 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+
   // POST /products
    router.post('/', upload.single("thumbnail"), (req, res) => {
     let query = `INSERT INTO products
