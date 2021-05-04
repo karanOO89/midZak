@@ -40,7 +40,8 @@ app.use(fileUpload());
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
-const productRoutes = require("./routes/products")
+const productRoutes = require("./routes/products");
+const messageRoutes = require("./routes/messages")
 const widgetsRoutes = require("./routes/widgets");
 const uploadRoutes = require("./routes/upload");
 const viewRoutes = require("./routes/view")
@@ -49,6 +50,7 @@ const viewRoutes = require("./routes/view")
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use('/products', productRoutes(db));
+app.use('/messages', productRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/upload", uploadRoutes(db));
 // Note: mount other resources here, using the same pattern above
