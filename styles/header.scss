@@ -4,14 +4,15 @@ header {
   padding: 10px 15px;
   height: 5em;
   overflow: hidden;
+
   nav {
     display: flex;
     justify-content: space-between;
     padding-left: 1em;
     padding-right: 1em;
-    
+
     #nav-a {
-        padding-top: 1.5em;
+      padding-top: 1.5em;
       color: #48353a;
       text-decoration: none;
       margin-left: 15px;

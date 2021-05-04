@@ -33,15 +33,16 @@
 
     <div class="card">
       <img class="pdp-product-image" id="main-product-image" src="jeans3.jpg" alt="Denim Jeans" style="width:100%">
-      <h1 id="product-name"></h1>
+      <h1 id="product-name"><%= product.name %></h1>
 
-      <p id="product-price" class="price">$</p>
-      <p id="product-description"></p>
-      <p><button>Contact Seller</button></p>
-      <form>
-        <p><button>Request New Price</button></p>
-        <input type="integer" id="newprice" name="newprice" placeholder="$"><br>
-      </form>
+      <p id="product-price" class="price">$<%= product.price %></p>
+      <label for="description" class="fcf-label">Description:</label>
+      <p id="product-description"><%= product.description %></p>
+      <label for="stock" class="fcf-label">Stock:</label>
+      <p id="product-description"><%= product.stock %></p>
+      <form action="/messages" method="GET">
+      <p><button type="submit">Contact Seller</button></p>
+    </form>
     </div>
 
     <footer>

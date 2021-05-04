@@ -2,14 +2,10 @@
   This file create Query and Routing for Messages
  */
 
+const express = require('express');
+const router = express.Router();
 
-  const express = require('express');
-  const router = express.Router();
-
-
-
-
-  module.exports = (db) => {
+module.exports = (db) => {
 
     // router.use((req, res, next) => {
     //   if(!req.cookies.user_id) {
@@ -20,6 +16,7 @@
 
     // GET /messages
     router.get('/', (req, res) => {
+      res.render("offer-message");
       let queryString = `SELECT * From messages LIMIT 10;`;
       let queryParams =[];
       db.query(queryString,queryParams)

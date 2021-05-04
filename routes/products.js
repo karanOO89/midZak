@@ -2,7 +2,6 @@
   This file create QuerY Strings and Value Array for That
  */
 
-
 const express = require('express');
 const router = express.Router();
 const multer  = require('multer');
@@ -20,17 +19,32 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage })
 
-//const productFunctions = require("../db/products_queries")
-
-
 module.exports = (db) => {
 
-  // router.use((req, res, next) => {
-  //   if(!req.cookies.user_id) {
-  //     res.redirect('/login');
-  //   }
-  //   next;
-  // });
+  // GET /products/:id
+  // View single product
+  router.get('/:id', (req, res) => {
+    db.query('SELECT * From products WHERE id = $1', [req.params.id])
+    .then((data) => {
+      if(data.rows[0]){
+        const templateVars = {
+          product: data.rows[0]
+        };
+        res.render('product-page', templateVars);
+      } else {
+        res.redirect("/");
+      }
+    })
+    .catch(err => {
+      res.redirect("/");
+    });
+  });
+
+  // PUT /products/:id
+  // Edit a single product
+  router.put('/:id', (req, res) => {
+
+  });
 
   // GET /products
   router.get('/', (req, res) => {
@@ -90,44 +104,7 @@ module.exports = (db) => {
          .status(500)
          .json({ error: err.message });
      });
-  })
-
-
-    // Single product page
-    router.get("/page", (req, res) => {
-      res.render("product-page");
-    });
-
-
-  //GET /products/:id
-  router.get('/:id', (req, res) => {
-    db.query('SELECT * From products WERE id = $1', [id])
-    .then((data) => {
-      res.json(data.rows[0])
-    });
   });
 
-  //GET /products/edit/:id
-  router.get('/:id', (req, res) => {
-    let queryString = `SELECT * From products WHERE id = $1`;
-    const queryParams= [
-      req.body.product_name,
-      req.body.description,
-      Number(req.body.price),
-      Number(req.body.stock),
-      req.file
-    ];
-
-    db.query(queryString,queryParams)
-    .then((res) => {
-      res.rows[0];
-    })
-
-    .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
-    });
-    return router;
-  });
+  return router;
 }
