@@ -5,11 +5,22 @@
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
-
 const express = require('express');
 const router = express.Router();
-const multer  = require('multer')
-const upload = multer({});
+const multer  = require('multer');
+//const imageToBase64 = require('image-to-base64');
+
+// SET multer STORAGE
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now())
+  }
+})
+
+var upload = multer({ storage: storage })
 
 //const productFunctions = require("../db/products_queries")
 
@@ -25,8 +36,12 @@ module.exports = (db) => {
 
   // GET /products
   router.get('/', (req, res) => {
-    db.query('SELECT * From products;')
+    res.render("product_upload");
+    let queryString = `SELECT * From products LIMIT 10;`;
+    let queryParams =[];
+    db.query(queryString,queryParams)
       .then(data => {
+        console.log(req.params)
         const products = data.rows;
         res.json({ products });
       })
@@ -37,8 +52,24 @@ module.exports = (db) => {
       });
   });
 
+  // GET /products/search
+  router.get('/search', (req, res) => {
+    let queryString = `SELECT * From products LIMIT 10;`;
+    let queryParams =[];
+    db.query(queryString,queryParams)
+      .then(data => {
+        console.log(req.params)
+        const products = data.rows;
+        res.json({ products });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
   // POST /products
-   router.post('/', upload.single(`/upload/photo`), (req, res) => {
+   router.post('/', upload.single("thumbnail"), (req, res) => {
     let query = `INSERT INTO products
       (name,
       description,
@@ -46,15 +77,13 @@ module.exports = (db) => {
       stock,
       thumbnail
       ) VALUES($1,$2,$3,$4,$5)`;
-
     const values= [
       req.body.product_name,
       req.body.description,
       Number(req.body.price),
       Number(req.body.stock),
-      req.file.buffer.toString('base64')
+      req.file
     ];
-
     db.query(query,values)
      .then((res) => {
        res.rows;
@@ -66,18 +95,19 @@ module.exports = (db) => {
      });
   })
 
-
-    // Single product page
-    router.get("/page", (req, res) => {
-      res.render("product-page");
-    });
-
-
-  //GET /products/:id
+  //GET /products/edit/:id
   router.get('/:id', (req, res) => {
-    db.query('SELECT * From products WERE id = $1', [id])
-    .then((data) => {
-      res.json(data.rows[0]);
+    let queryString = `SELECT * From products WHERE id = $1`;
+    const queryParams= [
+      req.body.product_name,
+      req.body.description,
+      Number(req.body.price),
+      Number(req.body.stock),
+      req.file
+    ];
+    db.query(queryString,queryParams)
+    .then((res) => {
+      res.rows[0];
     })
     .catch(err => {
       res

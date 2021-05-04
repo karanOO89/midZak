@@ -13,6 +13,7 @@ const app        = express();
 const morgan     = require('morgan');
 const path = require('path');
 
+
 // PG database client/connection setup
 const { Pool } = require('pg');
 const dbParams = require('./lib/db.js');
@@ -41,18 +42,17 @@ app.use(fileUpload());
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
 const productRoutes = require("./routes/products")
-const widgetsRoutes = require("./routes/widgets");
+const loginRoutes = require("./routes/login");
 const uploadRoutes = require("./routes/upload");
 const viewRoutes = require("./routes/view")
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
-app.use('/products', productRoutes(db));
-app.use("/api/widgets", widgetsRoutes(db));
+app.use("/products", productRoutes(db));
+app.use("/login", loginRoutes(db));
 app.use("/upload", uploadRoutes(db));
 // Note: mount other resources here, using the same pattern above
-
 
 
 app.use("/", viewRoutes(db));
