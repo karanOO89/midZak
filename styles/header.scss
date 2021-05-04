@@ -1,3 +1,28 @@
-header{
+header {
+  //   display: flex;
+  position: fixed;
+  padding: 10px 15px;
+  height: 5em;
+  overflow: hidden;
+  nav {
     display: flex;
+    justify-content: space-between;
+    padding-left: 1em;
+    padding-right: 1em;
+    
+    #nav-a {
+        padding-top: 1.5em;
+      color: #48353a;
+      text-decoration: none;
+      margin-left: 15px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+  }
+}
+footer {
+  display: flex;
+  background-color: rgb(78, 54, 184);
+  width: 102.3%;
+  justify-content: center;
 }

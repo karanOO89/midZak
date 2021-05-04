@@ -17,7 +17,7 @@ CREATE TABLE thread_masters (
   product_id INTEGER NOT NULL REFERENCES products(id) ON DELETE CASCADE,
   user1_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   user2_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  is_dealt Boolean BY DEFULT false
+  is_dealt Boolean BY DEFAULT false
 );
 
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA TO labber;

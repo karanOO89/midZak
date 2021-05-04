@@ -1,32 +1,50 @@
 // See: https://sass-lang.com/
 
 body {
+  flex-direction: column;
+  background-color: rgb(218, 87, 36);
   display: flex;
-  justify-content: right;
+  align-items: center;
   padding-right: 1em;
   main {
-    flex-wrap: wrap;
-    width: 85%;
-    background-color: rgb(230, 235, 221);
+    margin-top: 5em;
     display: flex;
-    justify-content: flex-start;
-    // align-items: center;
-
-    // flex-direction: ;
-    #prod_article {
-      //   // justify-content: space-evenly;
-      //   // flex-direction: row;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 102.3%;
+    background-color: rgb(230, 235, 221);
+    justify-content: flex-start;    
+    #menu{
+      width:15em;
+      background-color: rgb(212, 212, 32);
+    }
+    #prod_view{
+      padding-left: 6em;
+      display: flex;
+      width: 72em;
+      flex-wrap: wrap;
+     
+      #prod_article {
+        #art_logo :hover{
+        visibility:visible
+      }
       padding: 1em;
-      //   width: 10px;
-      //   height:1em
-      //   // padding-right: 10em;
-      // }
       img {
         height: 15em;
         width: 20em;
       }
+      #art_logo{
+        display: none;
+        display: flex;
+        justify-content: flex-end;
+        padding-left:5px;
+        background-color: lightgray;
+        i{
+          padding: 2px;
+        }
+      }
     }
-
+  }
     margin-top: 5em;
   }
 }
