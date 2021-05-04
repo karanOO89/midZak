@@ -17,13 +17,8 @@ CREATE TABLE thread_masters (
   product_id INTEGER NOT NULL REFERENCES products(id) ON DELETE CASCADE,
   user1_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   user2_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  is_dealt Boolean DEFAULT false
+  is_dealt Boolean DEFAULT true
 );
 
-GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA TO labber;
-GRANT USAGE, SELECT ON sequence messages_id_seq TO labber;
-GRANT USAGE, SELECT ON sequence thread_masters_id_seq TO labber;
-
-
-
-
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO labber;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO labber;

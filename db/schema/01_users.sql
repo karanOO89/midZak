@@ -18,4 +18,4 @@ CREATE TABLE user_type (
 );
 
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO labber;
-GRANT USAGE, SELECT ON sequence users_id_seq TO labber;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO labber;

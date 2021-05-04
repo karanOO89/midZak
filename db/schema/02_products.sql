@@ -7,12 +7,12 @@ CREATE TABLE products (
   description VARCHAR(255) NOT NULL,
   price INTEGER NOT NULL,
   stock INTEGER  NOT NULL,
-  is_approved Boolean NOT NULL DEFAULT false,
+  is_approved Boolean NOT NULL DEFAULT true,
   is_for_sale Boolean NOT NULL DEFAULT true,
   user_id INTEGER  NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   thumbnail VARCHAR(255) NOT NULL,
   image_id INTEGER  DEFAULT 0
 );
-GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA TO labber;
-GRANT USAGE, SELECT ON sequence products_id_seq TO labber;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO labber;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO labber;
 

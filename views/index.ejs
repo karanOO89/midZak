@@ -5,45 +5,66 @@
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout_listing.css" type="text/css" />
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/styles/responsive_design.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/styles/layout_listing.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script
+      src="https://kit.fontawesome.com/fb5d2a2f66.js"
+      crossorigin="anonymous"
+    ></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
     <link rel="stylesheet" media="screen" href="assets/css/style.css" />
-
   </head>
 
-  <header>
-    <h1>
-      <img src ="logo.svg">
-    </h1>
-
-    <!-- search bar -->
-    <nav>
-      <a href="favorites.html">Favorites</a>
-      <a href="sell.html">Sell</a>
-      <a href="inbox.html">Inbox</a>
-    </nav>
-
-  </header>
-
   <body>
+    <!-- search bar -->
+    <header>
+      <nav>
+        <div>
+          <h1>
+            <img src="logo.svg" />
+          </h1>
+        </div>
+        <div id="nav-a">
+          <a href="favorites.html">Favorites</a>
+          <a href="sell.html">Sell</a>
+          <a href="inbox.html">Inbox</a>
+        </div>
+      </nav>
+    </header>
     <main>
-      <% for(let ele in data ) { %>
-      <article id="prod_article">
-        <tr>
-          <div><td><img src="uploads/<%= data[ele]["thumbnail"] %>.png" /></td></div>
-        </tr>
-      </article>
-      <% } %>
+      <div id="menu">
+        <p>hey hello</p>
+      </div>
+      <div id="prod_view">
+        <% for(let ele in data ) { %>
+        <article id="prod_article">
+          <div>
+            <tr>
+              <div>
+                <td><img src="uploads/<%= data[ele]["thumbnail"] %>.png" /></td>
+              </div>
+            </tr>
+          </div>
+          <div id="art_logo">
+            <button class="fas fa-flag"></button>
+            <button class="fas fa-retweet"></button>
+            <button method="post" class="fas fa-heart"></button>
+          </div>
+        </article>
+        <% } %>
+      </div>
     </main>
+    <footer>
+      <div></div>
+      <img src="logo-footer.svg" />
+      <p>Copyright &copy; KAZ 2021</p>
+    </footer>
   </body>
-
-  <footer>
-    <img src="logo-footer.svg">
-     <p>Copyright &copy; KAZ 2021</p>
-  </footer>
-
-
 </html>
