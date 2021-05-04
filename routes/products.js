@@ -27,13 +27,12 @@ module.exports = (db) => {
   router.get('/:id', (req, res) => {
     db.query('SELECT * From products WHERE id = $1', [req.params.id])
     .then((data) => {
+      console.log('data', data)
       if(data.rows[0]){
         const templateVars = {
           product: data.rows[0]
         };
         res.render('product-page', templateVars);
-      } else {
-        res.redirect("/");
       }
     })
     .catch(err => {
@@ -63,7 +62,9 @@ module.exports = (db) => {
       }
     })
     .catch(err => {
-      res.redirect("/");
+      res
+          .status(500)
+          .json({ error: err.message });
     });
   })
 
