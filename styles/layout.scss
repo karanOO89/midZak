@@ -5,14 +5,14 @@ body {
   display:flex;
   justify-content: center;
   margin-top: 3em;
-  
+
   h1 {
     color: #244751;
   }
   #file{
     visibility: hidden;
   }
- 
+
   .new-product-form__field-wrapper{
     display:flex;
     flex-direction: row;
@@ -47,7 +47,7 @@ body {
   }
 
   h2 {
-    font-family:  David Libre;
+    font-family:  Geneva;
     font-weight: 700;
     font-size: 64px;
     line-height: 1;
