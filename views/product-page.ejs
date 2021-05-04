@@ -40,7 +40,7 @@
       <p id="product-description"><%= product.description %></p>
       <label for="stock" class="fcf-label">Stock:</label>
       <p id="product-description"><%= product.stock %></p>
-      <form action="/messages" method="GET">
+      <form action="/products/<%= product.id %>/messages" method="GET">
       <p><button type="submit">Contact Seller</button></p>
     </form>
     </div>

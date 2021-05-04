@@ -16,7 +16,7 @@ module.exports = (db) => {
 
     // GET /messages
     router.get('/', (req, res) => {
-      res.render("offer-message");
+      res.render("product-message");
       let queryString = `SELECT * From messages LIMIT 10;`;
       let queryParams =[];
       db.query(queryString,queryParams)

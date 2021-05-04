@@ -5,6 +5,7 @@
 const express = require('express');
 const router = express.Router();
 const multer  = require('multer');
+const messages = require('./messages');
 //const imageToBase64 = require('image-to-base64');
 
 // SET multer STORAGE
@@ -39,6 +40,32 @@ module.exports = (db) => {
       res.redirect("/");
     });
   });
+
+  // GET /products/:id/message
+  router.get('/:id/messages', (req, res) => {
+    db.query('SELECT * From products WHERE id = $1', [req.params.id])
+    .then((data) => {
+      if(data.rows[0]){
+
+        const product = data.rows[0];
+
+        //product ID
+        console.log(product.id)
+        // sender ID
+        // This should be logged in user ID
+
+        const templateVars = {
+          product: product
+        };
+        res.render('product-message', templateVars);
+      } else {
+        res.redirect("/");
+      }
+    })
+    .catch(err => {
+      res.redirect("/");
+    });
+  })
 
   // PUT /products/:id
   // Edit a single product
