@@ -11,7 +11,7 @@ CREATE TABLE products (
   is_for_sale Boolean NOT NULL DEFAULT true,
   user_id INTEGER  NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   thumbnail VARCHAR(255) NOT NULL,
-  -- image_id INTEGER  DEFAULT 0
+  image_id INTEGER  DEFAULT 0
 );
 GRANT ALL PRIVILEGES ON TABLE products TO labber;
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO labber;

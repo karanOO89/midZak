@@ -13,17 +13,17 @@ body {
     flex-wrap: wrap;
     width: 102.3%;
     background-color: rgb(230, 235, 221);
-    justify-content: flex-start;    
+    justify-content: flex-start;
     #menu{
       width:15em;
-      background-color: rgb(212, 212, 32);
+      background-color: rgb(248, 248, 239);
     }
     #prod_view{
       padding-left: 6em;
       display: flex;
       width: 72em;
       flex-wrap: wrap;
-     
+
       #prod_article {
         #art_logo :hover{
         visibility:visible
