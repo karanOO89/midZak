@@ -7,8 +7,9 @@ const session = require('express-session');
 router.use(session({
   secret: 'work hard',
   resave: true,
-  saveUninitialized: true,
+  saveUninitialized: false,
   }));
+
 
 module.exports = (db) => {
 
@@ -20,7 +21,6 @@ module.exports = (db) => {
   router.post("/", (req, res) => {
     let queryString = `SELECT * From users WHERE email=$1;`;
     let queryParams =[req.body.email];
-    console.log(req.body);
     db.query(queryString,queryParams)
       .then(data => {
         if(data.rows.length == 0) {
@@ -30,7 +30,8 @@ module.exports = (db) => {
           db.query(queryString,queryParams)
           .then(data => {
             console.log("id:", data.rows);
-            res.session.user_id = data.rows[0].id;
+            req.session.user_id = data.rows[0].id;
+            res.render("index");
           })
           .catch(err => {
             res
@@ -38,8 +39,9 @@ module.exports = (db) => {
               .json({ error: err.message });
           });
         } else {
-          console.log('result:',data.rows)
-          res.session.user_id = data.row[0].id;
+          console.log('result:',data.rows);
+          req.session.user_id = data.rows[0].id;
+          res.render("index");
         }
       })
       .catch(err => {
