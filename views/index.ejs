@@ -5,13 +5,10 @@
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/index.css" type="text/css" />
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
-    <link
-      rel="stylesheet"
-      href="/styles/responsive_design.css"
-      type="text/css"
-    />
-    <link rel="stylesheet" href="/styles/layout_listing.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/responsive_design.css" type="text/css"/>
+    <link rel="stylesheet" href="/styles/product-upload.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script
@@ -22,28 +19,26 @@
     <link rel="stylesheet" media="screen" href="assets/css/style.css" />
   </head>
 
-  <body>
-    <!-- search bar -->
-    <header>
-      <nav>
-        <div>
-          <h1>
-            <img src="logo.svg" />
-          </h1>
-        </div>
-        <div id="nav-a">
-          <a href="favorites.html">Favorites</a>
-          <a href="sell.html">Sell</a>
-          <a href="inbox.html">Inbox</a>
-        </div>
-      </nav>
-    </header>
-    <main>
-      <div id="menu">
-        <p>hey hello</p>
+  <header>
+    <nav>
+
+        <h1>
+          <img src="logo.svg" />
+        </h1>
+
+      <div id="nav-a">
+        <a href="favorites.html">Favorites</a>
+        <a href="sell.html">Sell</a>
+        <a href="inbox.html">Inbox</a>
       </div>
+    </nav>
+  </header>
+  <body>
+    <main>
+
       <div id="prod_view">
         <% for(let ele in data ) { %>
+
         <article id="prod_article">
           <div>
             <tr>
@@ -61,10 +56,12 @@
         <% } %>
       </div>
     </main>
+
     <footer>
       <div></div>
       <img src="logo-footer.svg" />
       <p>Copyright &copy; KAZ 2021</p>
     </footer>
+
   </body>
 </html>

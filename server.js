@@ -54,6 +54,10 @@ app.use("/upload", uploadRoutes(db));
 
 // Note: mount other resources here, using the same pattern above
 
+app.get("/viewdesign", (req, res) => {
+  res.render('newlayout');
+});
+
 app.use("/", viewRoutes(db));
 app.get("/", (req, res) => {
   // const body = req.body;
