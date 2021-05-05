@@ -52,23 +52,23 @@ module.exports = (db) => {
   });
 
   // GET /products/search
-  router.get('/search', (req, res) => {
-    let queryString = `SELECT * From products LIMIT 10;`;
-    let queryParams =[];
-    db.query(queryString,queryParams)
-      .then(data => {
-        console.log(req.params)
-        const products = data.rows;
-        res.json({ products });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  });
-  // POST /products
-   router.post('/', upload.single("thumbnail"), (req, res) => {
+  // router.get('/search', (req, res) => {
+  //   let queryString = `SELECT * From products LIMIT 10;`;
+  //   let queryParams =[];
+  //   db.query(queryString,queryParams)
+  //     .then(data => {
+  //       console.log(req.params)
+  //       const products = data.rows;
+  //       res.json({ products });
+  //     })
+  //     .catch(err => {
+  //       res
+  //         .status(500)
+  //         .json({ error: err.message });
+  //     });
+  // });
+  // POST /new-products
+   router.post('/:new', upload.single("thumbnail"), (req, res) => {
     const obj = Object.assign({},req.body);
     console.log(obj);
     let query = `INSERT INTO products
@@ -102,19 +102,19 @@ module.exports = (db) => {
      });
   })
 
-  //GET /products/edit/:id
-  router.get('/:id', (req, res) => {
-    let queryString = `SELECT * From products WHERE id = $1`;
+  //GET /products/search
+  router.get('/:search', (req, res) => {
+    let queryString = `SELECT * From products
+    WHERE products.name LIKE $1 OR
+    products.description LIKE $1;`;
     const queryParams= [
-      req.body.product_name,
-      req.body.description,
-      Number(req.body.price),
-      Number(req.body.stock),
-      req.file
+      `%${req.query.search[0]}%`
     ];
+    console.log("before query:",req.query.search[0]);
     db.query(queryString,queryParams)
     .then((data) => {
-      data.rows[0];
+      console.log("after query", data.rows);
+      res.render("product-page", data.rows)
     })
     .catch(err => {
       res

@@ -6,14 +6,22 @@
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
   </head>
-
   <body>
-    <form action="/products" method="POST" id="new-product-form" enctype="multipart/form-data" class="new-product">
-
+      <p>
+       <br>
+       <h3>  Search Form </h3>
+        <form action="/products/search" method="GET" class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" name="search" placeholder="Search Text" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0"  name="search" type="submit">Search</button>
+        </form>
+       </p>
+    <br>
+    <p>
+      <form action="/products/new" method="POST" id="new-product-form" enctype="multipart/form-data" class="new-product">
+      <h3>  New Product Form </h3>
       <div class="new-product-form__field-wrapper">
         <label for="new-product-form__name">Product Name</label>
         <input placeholder="Product Name" type="text" name="product_name" id="new-product-form__name">
@@ -49,7 +57,7 @@
            <h3 id="file">File Uploaded</h3>
            <button type="submit">upload</button>
      </form> -->
-
+    </p>
   </body>
   </html>
 
