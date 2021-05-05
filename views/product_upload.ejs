@@ -30,7 +30,7 @@
   </header>
 
   <body>
-    <form action="/upload" method="post" id="new-product-form" enctype="multipart/form-data" class="new-product">
+    <form action="/products" method="POST" id="new-product-form" enctype="multipart/form-data" class="new-product">
 
       <div class="new-product-form__field-wrapper">
         <label for="new-product-form__name">Product Name</label>
@@ -54,7 +54,7 @@
         </div>
 
           <label for="new-product-form__thumbnail">Thumbnail Image</label>
-             <input type="file" name="thumbnail" accept="image/*" id="new-product-form__thumbnail" />
+           <input type="file" name="thumbnail" accept="image/*" id="new-product-form__thumbnail" />
 
         <div class="new-product-form__field-wrapper">
           <button type="submit">Create</button>
