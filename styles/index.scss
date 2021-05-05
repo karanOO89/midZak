@@ -13,7 +13,7 @@ body {
     flex-wrap: wrap;
     width: 102.3%;
     background-color: rgb(230, 235, 221);
-    justify-content: flex-start;    
+    justify-content: flex-start;
     #menu{
       width:15em;
       background-color: rgb(212, 212, 32);
@@ -23,7 +23,7 @@ body {
       display: flex;
       width: 72em;
       flex-wrap: wrap;
-     
+
       #prod_article {
         #art_logo :hover{
         visibility:visible
@@ -51,7 +51,10 @@ body {
 
 
 //classes for jquery
-.btnRed{
+.btnRed {
   color: red ;
 }
 
+.icon-heart{
+  color: red ;
+}

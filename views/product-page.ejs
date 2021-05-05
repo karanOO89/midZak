@@ -99,19 +99,25 @@
 
         <!--/span Product Specific-->
 
-        <div class="card">
-          <img class="product-image" id="main-product-image" src="jeans3.jpg" alt="Denim Jeans" style="width:100%">
-          <h1 id="product-name"><%= product.name %></h1>
+        <body>
+          <div class="row-fluid">
+            <div class="card">
+              <img class="product-image" id="main-product-image" src="jeans3.jpg" alt="Denim Jeans" style="width:100%">
+              <h1 id="product-name"><%= product.name %></h1>
 
-          <p id="product-price" class="price">$<%= product.price %></p>
-          <label for="description" class="fcf-label">Description:</label>
-          <p id="product-description"><%= product.description %></p>
-          <label for="stock" class="fcf-label">Stock:</label>
-          <p id="product-description"><%= product.stock %></p>
-          <form action="/products/<%= product.id %>/messages" method="GET">
-          <p><button type="submit">Contact Seller</button></p>
-        </form>
-        </div>
+              <p id="product-price" class="price">$<%= product.price %></p>
+              <label for="description" class="fcf-label">Description:</label>
+              <p id="product-description"><%= product.description %></p>
+              <label for="stock" class="fcf-label">Stock:</label>
+              <p id="product-description"><%= product.stock %></p>
+              <form action="/products/<%= product.id %>/messages" method="GET">
+              <p><button type="submit">Contact Seller</button></p>
+            </form>
+            </div>
+          </div>
+        </body>
+
+
 
         <!--/span-->
       </div>
