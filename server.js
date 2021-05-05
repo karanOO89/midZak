@@ -86,6 +86,4 @@ app.get("/", (req, res) => {
 // Separate them into separate routes files (see above).
 
 
-app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
-});
+app.listen(PORT, (err) => console.log(err || `listening on port ${PORT} 😎`));

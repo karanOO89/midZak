@@ -3,18 +3,6 @@
 
 const express = require('express');
 const router = express.Router();
-// const session = require('express-session');
-// router.use(session({
-//   secret: 'work hard',
-//   resave: true,
-//   saveUninitialized: false,
-//   cookie: {
-//     path: '/',
-//     httpOnly: true,
-//     secure: false,
-//     maxAge: null
-// }
-//   }));
 
 
 module.exports = (db) => {
