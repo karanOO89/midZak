@@ -11,20 +11,12 @@ const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
 const path = require('path');
-const session = require('express-session');
-
+const cookieSession = require('cookie-session');
 // //Using express-session in app with secret key
-app.use(session({
-  secret: 'work hard',
-  resave: true,
-  saveUninitialized: false,
-  cookie: {
-    path: '/',
-    httpOnly: true,
-    secure: false,
-    maxAge: null
-}
-  }));
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1']
+}));
 
 
 // PG database client/connection setup
