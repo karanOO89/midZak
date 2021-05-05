@@ -4,7 +4,7 @@ const app        = express();
 app.use(express.static("uploads"));
 module.exports = (db) => {
   router.get("/", (req, res) => {
-  db.query(`SELECT thumbnail FROM products;`)
+  db.query(`SELECT * FROM products;`)
       .then(data => {
         const templateVars = {
            data: data.rows
