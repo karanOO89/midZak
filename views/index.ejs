@@ -5,6 +5,7 @@
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/index.css" type="text/css" />
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
     <link
       rel="stylesheet"
@@ -19,17 +20,14 @@
       crossorigin="anonymous"
     ></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
-    <link rel="stylesheet" media="screen" href="assets/css/style.css" />
+    <script type="text/javascript" src="/scripts/favorite.js"></script>
   </head>
 
   <body>
-    <!-- search bar -->
     <header>
       <nav>
         <div>
-          <h1>
-            <img src="logo.svg" />
-          </h1>
+          <h1></h1>
         </div>
         <div id="nav-a">
           <a href="favorites.html">Favorites</a>
@@ -48,14 +46,18 @@
           <div>
             <tr>
               <div>
-                <td><img src="uploads/<%= data[ele]["thumbnail"] %>.png" /></td>
+                <td><img src="uploads/<%= data[ele]['thumbnail'] %>.png" /></td>
               </div>
             </tr>
           </div>
           <div id="art_logo">
-            <button class="fas fa-flag"></button>
-            <button class="fas fa-retweet"></button>
-            <button method="post" class="fas fa-heart"></button>
+            <button
+              type="button"
+              class="fas fa-heart favBtn"
+              data-productid="<%=data[ele].id%>"
+              data-fav_prod_id="<%=data[ele].fav_prod_id %>"
+              data-user_id="<%=data[ele].user_id %>"
+            ></button>
           </div>
         </article>
         <% } %>

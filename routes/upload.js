@@ -39,7 +39,7 @@ module.exports = (db) => {
       console.log(values);
       db.query(query, values)
       .then((data) => {
-        const upload = data.rows;
+        // const upload = data.rows;
         res.redirect("/");
         // res.render("products_listing", { upload });
       })
