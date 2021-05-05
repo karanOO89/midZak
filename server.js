@@ -6,12 +6,25 @@ const PORT       = process.env.PORT || 8080;
 const ENV        = process.env.ENV || "development";
 const express    = require("express");
 const fileUpload = require("express-fileupload");
-const multer     = require("multer");
 const bodyParser = require("body-parser");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
 const path = require('path');
+const session = require('express-session');
+
+// //Using express-session in app with secret key
+app.use(session({
+  secret: 'work hard',
+  resave: true,
+  saveUninitialized: false,
+  cookie: {
+    path: '/',
+    httpOnly: true,
+    secure: false,
+    maxAge: null
+}
+  }));
 
 
 // PG database client/connection setup
@@ -34,9 +47,9 @@ app.use("/styles", sass({
   outputStyle: 'expanded'
 }));
 app.use(express.static("public"));
-app.use(fileUpload());
-// app.use(path());
-// app.use(storage());
+//app.use(fileUpload());
+//app.use(path());
+//app.use(storage());
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -51,7 +64,7 @@ const viewRoutes = require("./routes/view")
 app.use("/api/users", usersRoutes(db));
 app.use("/products", productRoutes(db));
 app.use("/login", loginRoutes(db));
-app.use("/upload", uploadRoutes(db));
+//app.use("/upload", uploadRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 

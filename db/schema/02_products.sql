@@ -10,7 +10,7 @@ CREATE TABLE products (
   is_approved Boolean NOT NULL DEFAULT true,
   is_for_sale Boolean NOT NULL DEFAULT true,
   user_id INTEGER  NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  thumbnail VARCHAR(255) NOT NULL,
+  thumbnail VARCHAR(225) NOT NULL,
   image_id INTEGER  DEFAULT 0
 );
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO labber;

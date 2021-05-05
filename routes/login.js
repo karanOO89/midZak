@@ -3,12 +3,18 @@
 
 const express = require('express');
 const router = express.Router();
-const session = require('express-session');
-router.use(session({
-  secret: 'work hard',
-  resave: true,
-  saveUninitialized: false,
-  }));
+// const session = require('express-session');
+// router.use(session({
+//   secret: 'work hard',
+//   resave: true,
+//   saveUninitialized: false,
+//   cookie: {
+//     path: '/',
+//     httpOnly: true,
+//     secure: false,
+//     maxAge: null
+// }
+//   }));
 
 
 module.exports = (db) => {
@@ -29,9 +35,9 @@ module.exports = (db) => {
           let queryParams =[req.body.name, req.body.email, req.body.password, user_type_id];
           db.query(queryString,queryParams)
           .then(data => {
-            console.log("id:", data.rows);
             req.session.user_id = data.rows[0].id;
-            res.render("index");
+            console.log("new user:",req.session);
+            res.redirect("/products");
           })
           .catch(err => {
             res
@@ -39,9 +45,9 @@ module.exports = (db) => {
               .json({ error: err.message });
           });
         } else {
-          console.log('result:',data.rows);
           req.session.user_id = data.rows[0].id;
-          res.render("index");
+          console.log("existing user:",req.session);
+          res.redirect("/products");
         }
       })
       .catch(err => {

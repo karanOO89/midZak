@@ -8,7 +8,6 @@
 const express = require('express');
 const router = express.Router();
 const multer  = require('multer');
-//const imageToBase64 = require('image-to-base64');
 
 // SET multer STORAGE
 var storage = multer.diskStorage({
@@ -16,23 +15,23 @@ var storage = multer.diskStorage({
     cb(null, 'public/uploads')
   },
   filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now())
+    cb(null, file.fieldname + '-' + Date.now() + ".png")
   }
 })
 
-var upload = multer({ storage: storage })
+const upload = multer({ storage })
 
 //const productFunctions = require("../db/products_queries")
 
 
 module.exports = (db) => {
 
-  // router.use((req, res, next) => {
-  //   if(!req.cookies.user_id) {
-  //     res.redirect('/login');
-  //   }
-  //   next;
-  // });
+  router.use((req, res, next) => {
+    if(!req.session.user_id) {
+      res.redirect('/login');
+    }
+    next();
+  });
 
   // GET /products
   router.get('/', (req, res) => {
@@ -70,28 +69,36 @@ module.exports = (db) => {
   });
   // POST /products
    router.post('/', upload.single("thumbnail"), (req, res) => {
+    const obj = Object.assign({},req.body);
+    console.log(obj);
     let query = `INSERT INTO products
       (name,
       description,
       price,
       stock,
+      user_id,
       thumbnail
-      ) VALUES($1,$2,$3,$4,$5)`;
+      ) VALUES($1, $2, $3, $4, $5, $6)`;
     const values= [
-      req.body.product_name,
-      req.body.description,
-      Number(req.body.price),
-      Number(req.body.stock),
-      req.file
+      obj.product_name,
+      obj.description,
+      Number(obj.price),
+      Number(obj.stock),
+      req.session.user_id,
+      req.file.path
     ];
+    //console.log("product user:",req.session.user_id, values);
     db.query(query,values)
-     .then((res) => {
-       res.rows;
+     .then((data) => {
+      //console.log(data.rows);
+      res.redirect("/");
      })
      .catch(err => {
        res
          .status(500)
          .json({ error: err.message });
+                console.log(values);
+
      });
   })
 
@@ -106,8 +113,8 @@ module.exports = (db) => {
       req.file
     ];
     db.query(queryString,queryParams)
-    .then((res) => {
-      res.rows[0];
+    .then((data) => {
+      data.rows[0];
     })
     .catch(err => {
       res
