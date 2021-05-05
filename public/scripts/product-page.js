@@ -1,5 +1,6 @@
 $(() => {
   // View: product-page.ejs
+  /*
   const productID = 0
   const product = {
     id: 12,
@@ -19,6 +20,7 @@ $(() => {
   $("#product-price").text(product.price);
   $("#product-stock").text(product.stock);
   $("#main-product-image").text(product.thumbnail);
+  */
   // $.ajax({
   //   method: "GET",
   //   url: "/products/"+productID

@@ -11,7 +11,7 @@ const bodyParser = require("body-parser");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
-const path = require('path');
+const path       = require('path');
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -21,7 +21,7 @@ db.connect();
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
-//         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
+// The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
 
 app.set("view engine", "ejs");
@@ -39,8 +39,8 @@ app.use(fileUpload());
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const usersRoutes = require("./routes/users");
-const productRoutes = require("./routes/products")
+const usersRoutes   = require("./routes/users");
+const productRoutes = require("./routes/products");
 const widgetsRoutes = require("./routes/widgets");
 const uploadRoutes = require("./routes/upload");
 const viewRoutes = require("./routes/view");
@@ -55,7 +55,11 @@ app.use("/upload", uploadRoutes(db));
 app.use("/heart", heartRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
+// Note: mount other resources here, using the same pattern above
 
+app.get("/viewdesign", (req, res) => {
+  res.render('newlayout');
+});
 
 app.use("/", viewRoutes(db));
 app.get("/", (req, res) => {

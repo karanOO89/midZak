@@ -1,32 +1,103 @@
 /*
- * All routes for Products are defined here
- * Since this file is loaded in server.js into api/products,
- *   these routes are mounted onto /users
- * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
+  This file create QuerY Strings and Value Array for That
  */
-
 
 const express = require('express');
 const router = express.Router();
-const multer  = require('multer')
-const upload = multer({});
+const multer  = require('multer');
+const messages = require('./messages');
+//const imageToBase64 = require('image-to-base64');
 
-//const productFunctions = require("../db/products_queries")
+// SET multer STORAGE
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now())
+  }
+})
 
+var upload = multer({ storage: storage })
 
 module.exports = (db) => {
 
-  // router.use((req, res, next) => {
-  //   if(!req.cookies.user_id) {
-  //     res.redirect('/login');
-  //   }
-  //   next;
-  // });
+  // GET /products/:id
+  // View single product
+  router.get('/:id', (req, res) => {
+    db.query('SELECT * From products WHERE id = $1', [req.params.id])
+    .then((data) => {
+      console.log('data', data)
+      if(data.rows[0]){
+        const templateVars = {
+          product: data.rows[0]
+        };
+        res.render('product-page', templateVars);
+      }
+    })
+    .catch(err => {
+      res.redirect("/");
+    });
+  });
+
+  // GET /products/:id/message
+  router.get('/:id/messages', (req, res) => {
+    db.query('SELECT * From products WHERE id = $1', [req.params.id])
+    .then((data) => {
+      if(data.rows[0]){
+
+        const product = data.rows[0];
+
+        //product ID
+        console.log(product.id)
+        // sender ID
+        // This should be logged in user ID
+
+        const templateVars = {
+          product: product
+        };
+        res.render('product-message', templateVars);
+      } else {
+        res.redirect("/");
+      }
+    })
+    .catch(err => {
+      res
+          .status(500)
+          .json({ error: err.message });
+    });
+  })
+
+  // PUT /products/:id
+  // Edit a single product
+  router.put('/:id', (req, res) => {
+
+  });
 
   // GET /products
   router.get('/', (req, res) => {
-    db.query('SELECT * From products;')
+    let queryString = `SELECT * From products LIMIT 10;`;
+    let queryParams =[];
+    db.query(queryString,queryParams)
       .then(data => {
+        console.log(req.params)
+        const products = data.rows;
+        res.json({ products });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+  // GET /products/search
+  router.get('/search', (req, res) => {
+    let queryString = `SELECT * From products LIMIT 10;`;
+    let queryParams =[];
+    db.query(queryString,queryParams)
+      .then(data => {
+        console.log(req.params)
         const products = data.rows;
         res.json({ products });
       })
@@ -38,7 +109,7 @@ module.exports = (db) => {
   });
 
   // POST /products
-   router.post('/', upload.single(`/upload/photo`), (req, res) => {
+   router.post('/', upload.single("thumbnail"), (req, res) => {
     let query = `INSERT INTO products
       (name,
       description,
@@ -46,15 +117,13 @@ module.exports = (db) => {
       stock,
       thumbnail
       ) VALUES($1,$2,$3,$4,$5)`;
-
     const values= [
       req.body.product_name,
       req.body.description,
       Number(req.body.price),
       Number(req.body.stock),
-      req.file.buffer.toString('base64')
+      req.file
     ];
-
     db.query(query,values)
      .then((res) => {
        res.rows;
@@ -64,30 +133,7 @@ module.exports = (db) => {
          .status(500)
          .json({ error: err.message });
      });
-  })
-
-
-    // Single product page
-    router.get("/page", (req, res) => {
-      res.render("product-page");
-    });
-
-
-  //GET /products/:id
-  router.get('/:id', (req, res) => {
-    db.query('SELECT * From products WERE id = $1', [id])
-    .then((data) => {
-      res.json(data.rows[0]);
-    })
-    .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
-    });
   });
+
   return router;
 }
-
-
-
-
