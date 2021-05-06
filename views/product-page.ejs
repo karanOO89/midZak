@@ -55,14 +55,14 @@
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
               <!-- Logged in as <a href="#" class="navbar-link">Username</a> -->
-              <a href="#myModal" role="button" class="btn" data-toggle="modal">Login / Signup</a>
+              <a href="/login" role="button" class="btn" data-toggle="modal">Login / Signup</a>
             </p>
             <ul class="nav">
               <li class="active"><a href="/upload">Sell</a></li>
               <li><a href="#about">Favourites</a></li>
               <li><a href="#contact">Inbox</a></li>
             </ul>
-            <form class="navbar-search pull-left">
+            <form action="/products/search" method="POST" role="search" class="navbar-search pull-left">
               <input type="text" class="search-query" placeholder="Search">
             </form>
 
