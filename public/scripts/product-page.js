@@ -9,9 +9,8 @@ $(document).ready(function () {
     $("#btnSeller").show();
   });
   $("#fcf-button").on("click", function (e) {
-    getMessages();
-
     const message = $("#Message").val();
+    $("#Message").val("");
     let productId = $("#fcf-button").data("productid");
     // console.log(productId)
 
@@ -20,7 +19,8 @@ $(document).ready(function () {
       type: "POST",
       data: { productId: productId, message: message },
       success: function (result) {
-        console.log(result);
+        // console.log(result);
+        getMessages();
       },
       error: function (error) {
         console.log("There was an error" + error);
@@ -33,9 +33,8 @@ $(document).ready(function () {
   //ajax call to backend to get messages which is an array
   existingMessages = []; // messages returned from backend
   function displayMessage(id) {
-    if (existingMessages.includes(id)) {
-      return true;
-    }
+    const newId = existingMessages.filter((x) => x === id);
+    return newId;
   }
 
   const getMessages = () => {
@@ -45,31 +44,22 @@ $(document).ready(function () {
       url: `/messages/${productId}?userId=${userId}`,
       type: "GET",
       success: function (result) {
-
-
-        
+        $("#showMessages").empty();
         for (let ele in result) {
-          existingMessages.push(Number(result[ele]["id"]));
-          console.log(existingMessages)
-          // console.log("existing :", existingMessages[0]);
-          if (!displayMessage(Number(result[ele]["id"]))) {
-            
-            $("#showMessages").append(`<span>${result[ele]["message"]}</span>` + " ");
-            getMessages();
-            
-          }
-          // $("#showMessages").val(`<span>${ele.message}</span>` + " ");
+          $("#showMessages").append(
+            `<p>${result[ele]["message"]}</span>\n</p>` + " "
+          );
+          // }
         }
-
-
       },
       error: function (error) {
         console.log("There was an error" + error);
       },
     });
   };
-  // setInterval( () => {
   getMessages();
+  // setInterval( () => {
+
   // // you're going to get the whole thread of messages, which you will append all the messages every second (not what you want), so you might want to do a comparison of messages on the frontend where you can check if the ids exist
   // }, 1000)
 });

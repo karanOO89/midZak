@@ -29,6 +29,11 @@
 //   font-size: 22px;
 // }
 // }
+body{
+
+  display: flex;
+  flex-direction: column;
+}
 .fcf-body{
   display:none ;
 }
