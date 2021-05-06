@@ -31,7 +31,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">MidZak</a>
+          <a class="brand" href="/">MidZak</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
               <!-- Logged in as <a href="#" class="navbar-link">Username</a> -->
@@ -92,8 +92,8 @@
           </div>
           <p>
             Sort Price By:
-            <button class="btn btn-small" type="button">High to low</button>
-            <button class="btn btn-small" type="button">Low to high</button>
+            <a class="btn btn-small" href="/?price=true" type="button">High to low</a>
+            <a class="btn btn-small" href="/" type="button">Low to high</a>
           </p>
           <div class="row-fluid">
             <ul class="thumbnails">
@@ -103,7 +103,7 @@
                 <div class="thumbnail">
                   <img src="uploads/<%= ele.thumbnail %>" />
                   <div class="caption">
-                    <h3><%= ele.name %></h3>
+                    <h4><%= ele.name %> - $<%= ele.price %></h4>
                     <p>
 
                       <a class="btn btn-primary" href="/products/<%= ele.id %>" role="button">View product</a>
@@ -144,13 +144,7 @@
       aria-hidden="true"
     >
       <div class="modal-header">
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-hidden="true"
-        >
-          ×
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
         </button>
         <h3 id="myModalLabel">Log in</h3>
       </div>
