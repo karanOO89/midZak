@@ -6,6 +6,18 @@
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/index.css" type="text/css" />
+
+    <style>
+    /* Style the input field */
+    #myInput {
+      padding: 20px;
+      margin-top: -6px;
+      border: 0;
+      border-radius: 0;
+      background: #f1f1f1;
+    }
+    </style>
+
     <!-- <link rel="stylesheet" href="/styles/header.css" type="text/css" /> -->
     <!-- <link
       rel="stylesheet"
@@ -82,12 +94,11 @@
               <li class="active"><a href="/upload">Sell</a></li>
               <li><a href="#about">Favourites</a></li>
               <li><a href="#contact">Inbox</a></li>
-            </ul>
-            <form action="/products/search" method="POST" class="navbar-search pull-left">
+              </ul>
+            <form action="/products/search" method="POST" role="search" class="navbar-search pull-left">
               <input type="text" name="search" class="search-query" placeholder="Search">
-              <button type="submit" class="btn btn-light">Submit</button>
+              <button type="submit" class="btn btn-light">Search</button>
             </form>
-
           </div>
           <!--/.nav-collapse -->
         </div>
@@ -116,6 +127,46 @@
               <li><a href="#">Accessories</a></li>
             </ul>
           </div>
+<style>
+    .box{
+        color: #fff;
+        padding: 20px;
+        display: none;
+        margin-top: 20px;
+    }
+    .red{ background: #db7e7e; }
+    .green{ background: #228B22; }
+    .blue{ background: #0000ff; }
+</style>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("select").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue = $(this).attr("value");
+            if(optionValue){
+                $(".box").not("." + optionValue).hide();
+                $("." + optionValue).show();
+            } else{
+                $(".box").hide();
+            }
+        });
+    }).change();
+});
+</script>
+</head>
+<body>
+    <div>
+        <select>
+            <option>Choose A Filter</option>
+            <option value="red">Specific User</option>
+            <option value="green">Price Descending</option>
+            <option value="blue">Price Ascending</option>
+        </select>
+    </div>
+    <div class="red box">You have selected <strong>Seller Id = 1</strong> so you are browsing only products listing by this user.</div>
+    <div class="green box">You have selected <strong>Price - Descending</strong> so .....</div>
+    <div class="blue box">You have selected <strong>Price - Ascending</strong> so ......</div>
           <!--/.well -->
         </div>
         <!--/span-->

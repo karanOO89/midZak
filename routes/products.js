@@ -203,7 +203,7 @@ module.exports = (db) => {
     });
   });
 
-  //GET /products/edit/:id
+  //POST /products/delete/:id
   // router.get('/:id', (req, res) => {
   //   let queryString = `SELECT * From products WHERE id = $1`;
   //   const queryParams= [

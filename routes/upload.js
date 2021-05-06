@@ -3,6 +3,12 @@ const router = express.Router();
 // const app        = express();
 // app.use(express.static("uploads"));
 
+router.use((req, res, next) => {
+  if(!req.session.user_id) {
+    res.redirect('/login');
+  }
+  next();
+});
 module.exports = (db) => {
    router.post("/", (req, res) => {
 
