@@ -6,8 +6,6 @@
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
 
-    <link rel="stylesheet" href="/styles/product-page.css" rel="stylesheet" />
-
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
     <meta charset="utf-8" />
@@ -54,7 +52,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">MidZak</a>
+          <a class="brand" href="/">MidZak</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
               <!-- Logged in as <a href="#" class="navbar-link">Username</a> -->
@@ -76,56 +74,26 @@
     </div>
 
         <!--/span Product Specific-->
-
-
-
-        <main class="container">
-
-          <!-- Left Column /  Image -->
-          <div class="left-column">
-            <img data-image="black" src="uploads/macbook.png" alt="">
-            <img data-image="blue" src="uploads/macbook.png" alt="">
-            <img data-image="red" class="active" src="uploads/macbook.png" alt="">
-          </div>
-
-
-          <!-- Right Column -->
-          <div class="right-column">
-
-          <div class="row-fluid">
-            <div class="card">
-              <img class="product-image" id="main-product-image" src="#" style="width:100%">
-
-              <span>
-                <h1 id="product-name"><%= product.name %></h1>
-              </span>
-
-              <h2 id="product-price" class="price">$<%= product.price %></h2>
-              <label for="description" class="fcf-label">Description:</label>
-              <p id="product-description"><%= product.description %></p>
-              <label for="stock" class="fcf-label">Stock:</label>
-              <p id="product-description"><%= product.stock %></p>
-              <form action="/products/<%= product.id %>/messages" method="GET">
-              <p><button type="submit">Contact Seller</button></p>
-            </form>
+        <div class="row">
+          <div class="span6">
+            <div style="margin-left: 100px">
+              <img src="/uploads/<%= product.thumbnail %>" />
             </div>
           </div>
+          <div class="span6 ">
+            <span>
+              <h1 id="product-name"><%= product.name %></h1>
+            </span>
 
-
-
-
-            </div>
-
-
-
-
-        </main>
-
-
-
-
-
-
+            <h2 id="product-price" class="price">$<%= product.price %></h2>
+            <label for="description" class="fcf-label">Description:</label>
+            <p id="product-description"><%= product.description %></p>
+            <label for="stock" class="fcf-label">Stock:</label>
+            <p id="product-description"><%= product.stock %></p>
+            <form action="/products/<%= product.id %>/messages" method="GET">
+            <p><button type="submit">Contact Seller</button></p>
+          </div>
+        </div>
 
       <footer>
         <p>&copy; MidZak LH 2021</p>
