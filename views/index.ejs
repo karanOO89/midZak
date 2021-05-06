@@ -65,16 +65,27 @@
           <a class="brand" href="#">MidZak</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
+            <!-- This Part can be styled with Navbar show/hid function -->
+              <!-- <form href="#myLoginnav" class="form-inline" action="/login" method="POST">
+                <input class="form-control" type="text" name="email" placeholder="Your email" style="width: 300px; margin: 3em">
+                <input class="form-control" type="text" name="password" placeholder="Your Password (> 4 characters)" style="width: 300px; margin: 1em">
+                <select class="form-control" type="text" name="userType">
+                  <option>user</option>
+                  <option>admin</option>
+                </select>
+                <button type="submit" class="btn btn-primary" style="margin: 1em">Log In</button>
+              </form> -->
               <!-- Logged in as <a href="#" class="navbar-link">Username</a> -->
-              <a href="#myModal" role="button" class="btn" data-toggle="modal">Login / Signup</a>
+              <a href="/login" role="button" data-toggle="popover" class="btn" data-toggle="modal">Login / Signup</a>
             </p>
             <ul class="nav">
               <li class="active"><a href="/upload">Sell</a></li>
               <li><a href="#about">Favourites</a></li>
               <li><a href="#contact">Inbox</a></li>
             </ul>
-            <form class="navbar-search pull-left">
-              <input type="text" class="search-query" placeholder="Search">
+            <form action="/products/search" method="POST" class="navbar-search pull-left">
+              <input type="text" name="search" class="search-query" placeholder="Search">
+              <button type="submit" class="btn btn-light">Submit</button>
             </form>
 
           </div>
