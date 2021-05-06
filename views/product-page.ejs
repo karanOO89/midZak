@@ -116,11 +116,16 @@
           <p id="product-description"><%= product.description %></p>
           <label for="stock" class="fcf-label">Stock:</label>
           <p id="product-description"><%= product.stock %></p>
-          <!-- <form action="/messages/<%= product.id %>" method="GET"> -->
+          <button type="button" id="btnDelte" data-productid="<%= product.id %>">Delete</button>  
+          <p></p>
             <p><button type="button" id="btnSeller">Contact Seller</button></p>
           <!-- </form> -->
           <link href="contact-form.css" rel="stylesheet" />
 
+
+
+          
+          
           <div class="fcf-body" >
             <div id="fcf-form">
               <!-- <h3 class="fcf-h3">Contact Seller</h3> -->
@@ -128,10 +133,14 @@
               <form
                 id="fcf-form-id"
                 class="fcf-form-class"
-                >
+                > <div id="showMessages">
+          
+                </div>
                 <div class="fcf-form-group" >
-                  <label for="Message" class="fcf-label">Your message</label>
                   <div class="fcf-input-group">
+                  <div id="noValid">
+                    <p>please enter text below</p>
+                  </div>
                     <textarea
                     id="Message"
                     name="Message"
@@ -139,6 +148,7 @@
                     rows="6"
                     maxlength="3000"
                     required
+                    placeholder="Your message"
                     ></textarea>
                   </div>
                 </div>
@@ -161,9 +171,7 @@
             <div class="fcf-credit" id="fcf-credit"></div>
           </form>
         </div>
-        <div id="showMessages">
-          
-        </div>
+       
       </div>
         </div>
 
@@ -172,7 +180,7 @@
       <!--/row-->
 
       <hr />
-
+     
       <footer>
         <p>&copy; MidZak LH 2021</p>
       </footer>
@@ -195,7 +203,7 @@
           data-dismiss="modal"
           aria-hidden="true"
         >
-          ×
+          
         </button>
         <h3 id="myModalLabel">Modal header</h3>
       </div>

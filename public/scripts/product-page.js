@@ -1,4 +1,17 @@
 $(document).ready(function () {
+  $("#btnDelte").on("click", function (e) {
+    e.preventDefault();
+    productId = $("#fcf-button").data("productid");
+    $.ajax({
+      url: "/products/" + productId + "/delete",
+      type: "POST",
+      data: { productId: productId },
+      success: function (result) {
+        window.location.href = "/";
+      },
+    });
+  });
+
   $("#btnSeller").on("click", function (e) {
     $(".fcf-body").slideDown();
     $(this).hide();
@@ -8,8 +21,21 @@ $(document).ready(function () {
     $(".fcf-body").hide();
     $("#btnSeller").show();
   });
+
+  $("#Message").keyup(function (event) {
+    if ($("#Message").val().length > 0) {
+      // alert("Please enter text in the message box");
+      $("#noValid").slideUp();
+    }
+  });
   $("#fcf-button").on("click", function (e) {
+    e.preventDefault();
+    if ($("#Message").val().length === 0) {
+      // alert("Please enter text in the message box");
+      $("#noValid").slideDown();
+    }
     const message = $("#Message").val();
+
     $("#Message").val("");
     let productId = $("#fcf-button").data("productid");
     // console.log(productId)
@@ -27,16 +53,6 @@ $(document).ready(function () {
       },
     });
   });
-  // loop through messages[], if existingMessages[...].id === messages.id, this message exists, don't append
-  // else, append
-
-  //ajax call to backend to get messages which is an array
-  existingMessages = []; // messages returned from backend
-  function displayMessage(id) {
-    const newId = existingMessages.filter((x) => x === id);
-    return newId;
-  }
-
   const getMessages = () => {
     let productId = $("#fcf-button").data("productid");
     userId = 1;
@@ -46,10 +62,7 @@ $(document).ready(function () {
       success: function (result) {
         $("#showMessages").empty();
         for (let ele in result) {
-          $("#showMessages").append(
-            `<p>${result[ele]["message"]}</span>\n</p>` + " "
-          );
-          // }
+          $("#showMessages").append(`<p>${result[ele]["message"]}\n</p>`);
         }
       },
       error: function (error) {
@@ -58,8 +71,4 @@ $(document).ready(function () {
     });
   };
   getMessages();
-  // setInterval( () => {
-
-  // // you're going to get the whole thread of messages, which you will append all the messages every second (not what you want), so you might want to do a comparison of messages on the frontend where you can check if the ids exist
-  // }, 1000)
 });

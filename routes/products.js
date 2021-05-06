@@ -38,6 +38,19 @@ module.exports = (db) => {
       });
   });
 
+  router.post("/:id/delete", (req, res) => {
+    // console.log(req.body.productId);
+    db.query(`DELETE FROM products WHERE id = $1`, [req.body.productId])
+      .then(() => {
+        // res.json(200,"ok");
+        // console.log("data",data)
+        return res.redirect("/");
+      })
+      .catch((err) => {
+        console.log("err",err)
+        res.status(500).json({ error: err.message });
+      });
+  });
   //
 
   // PUT /products/:id
@@ -148,23 +161,23 @@ module.exports = (db) => {
   // })
 
   //GET /products/edit/:id
-  router.get("/:id", (req, res) => {
-    let queryString = `SELECT * From products WHERE id = $1`;
-    const queryParams = [
-      req.body.product_name,
-      req.body.description,
-      Number(req.body.price),
-      Number(req.body.stock),
-      req.file,
-    ];
-    db.query(queryString, queryParams)
-      .then((data) => {
-        data.rows[0];
-      })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
-  });
+  // router.get("/:id", (req, res) => {
+  //   let queryString = `SELECT * From products WHERE id = $1`;
+  //   const queryParams = [
+  //     req.body.product_name,
+  //     req.body.description,
+  //     Number(req.body.price),
+  //     Number(req.body.stock),
+  //     req.file,
+  //   ];
+  //   db.query(queryString, queryParams)
+  //     .then((data) => {
+  //       data.rows[0];
+  //     })
+  //     .catch((err) => {
+  //       res.status(500).json({ error: err.message });
+  //     });
+  // });
 
   return router;
 };

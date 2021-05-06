@@ -29,12 +29,16 @@
 //   font-size: 22px;
 // }
 // }
-body{
+// body{
 
-  display: flex;
-  flex-direction: column;
-}
+//   display: flex;
+//   flex-direction: column;
+// }
 .fcf-body{
   display:none ;
 }
-
+#noValid{
+  display:none ;
+  color: red;
+  // background-color:aquamarine
+}
