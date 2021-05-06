@@ -20,7 +20,6 @@ module.exports = (db) => {
     const templateVars = {
       data: data.rows
     };
-    console.log(templateVars);
 
         res.render("index",templateVars);
       })

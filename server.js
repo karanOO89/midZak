@@ -39,9 +39,7 @@ app.use("/styles", sass({
   outputStyle: 'expanded'
 }));
 app.use(express.static("public"));
-//app.use(fileUpload());
-//app.use(path());
-//app.use(storage());
+app.use(fileUpload());
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -49,10 +47,10 @@ const usersRoutes   = require("./routes/users");
 const productRoutes = require("./routes/products");
 const widgetsRoutes = require("./routes/widgets");
 const loginRoutes = require("./routes/login");
-
 const uploadRoutes = require("./routes/upload");
 const viewRoutes = require("./routes/view");
 const heartRoutes = require("./routes/heart");
+const messagesRoutes = require("./routes/messages");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -62,6 +60,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 app.use("/upload", uploadRoutes(db));
 app.use("/heart", heartRoutes(db));
 app.use("/login", loginRoutes(db));
+app.use("/messages", messagesRoutes(db));
 //app.use("/upload", uploadRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
