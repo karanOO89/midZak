@@ -15,15 +15,6 @@ router.use((req, res, next) => {
   next();
 });
 
-// SET multer STORAGE
-// var storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, 'public/uploads')
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, file.fieldname + '-' + Date.now())
-//   }
-// })
 
 
 module.exports = (db) => {
@@ -187,26 +178,7 @@ module.exports = (db) => {
     });
   });
 
-  //POST /products/delete/:id
-  // router.get('/:id', (req, res) => {
-  //   let queryString = `SELECT * From products WHERE id = $1`;
-  //   const queryParams= [
-  //     req.body.product_name,
-  //     req.body.description,
-  //     Number(req.body.price),
-  //     Number(req.body.stock),
-  //     req.file
-  //   ];
-  //   db.query(queryString,queryParams)
-  //   .then((data) => {
-  //     data.rows[0];
-  //   })
-  //   .catch(err => {
-  //     res
-  //       .status(500)
-  //       .json({ error: err.message });
-  //   });
-  // });
+ 
 
   return router;
 };
