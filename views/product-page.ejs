@@ -5,6 +5,9 @@
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+
+    <link rel="stylesheet" href="/styles/product-page.css" rel="stylesheet" />
+
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
     <meta charset="utf-8" />
@@ -72,40 +75,32 @@
       </div>
     </div>
 
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Work From Home</li>
-              <li class="active"><a href="#">Office Supplies</a></li>
-              <li><a href="#">Lounge Wear</a></li>
-              <li><a href="#">Emotional Support Animals</a></li>
-              <li><a href="#">Therapy</a></li>
-              <li class="nav-header">COVID</li>
-              <li><a href="#">Masks</a></li>
-              <li><a href="#">Bulk Food</a></li>
-              <li><a href="#">Hand Sanitizer</a></li>
-              <li><a href="#">At Home Gym</a></li>
-              <li><a href="#">Video Games</a></li>
-              <li class="nav-header">Fashion</li>
-              <li><a href="#">Clothes</a></li>
-              <li><a href="#">Shoes</a></li>
-              <li><a href="#">Accessories</a></li>
-            </ul>
-          </div>
-          <!--/.well -->
-        </div>
-
         <!--/span Product Specific-->
 
-        <body>
+
+
+        <main class="container">
+
+          <!-- Left Column /  Image -->
+          <div class="left-column">
+            <img data-image="black" src="uploads/macbook.png" alt="">
+            <img data-image="blue" src="uploads/macbook.png" alt="">
+            <img data-image="red" class="active" src="uploads/macbook.png" alt="">
+          </div>
+
+
+          <!-- Right Column -->
+          <div class="right-column">
+
           <div class="row-fluid">
             <div class="card">
-              <img class="product-image" id="main-product-image" src="jeans3.jpg" alt="Denim Jeans" style="width:100%">
-              <h1 id="product-name"><%= product.name %></h1>
+              <img class="product-image" id="main-product-image" src="#" style="width:100%">
 
-              <p id="product-price" class="price">$<%= product.price %></p>
+              <span>
+                <h1 id="product-name"><%= product.name %></h1>
+              </span>
+
+              <h2 id="product-price" class="price">$<%= product.price %></h2>
               <label for="description" class="fcf-label">Description:</label>
               <p id="product-description"><%= product.description %></p>
               <label for="stock" class="fcf-label">Stock:</label>
@@ -115,15 +110,22 @@
             </form>
             </div>
           </div>
-        </body>
 
 
 
-        <!--/span-->
-      </div>
-      <!--/row-->
 
-      <hr />
+            </div>
+
+
+
+
+        </main>
+
+
+
+
+
+
 
       <footer>
         <p>&copy; MidZak LH 2021</p>
