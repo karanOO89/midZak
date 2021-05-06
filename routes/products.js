@@ -155,7 +155,7 @@ module.exports = (db) => {
      });
   })
 
-  //GET /products/search
+  //POST /products/search
   router.post('/search', (req, res) => {
     let queryString = `SELECT * From products
     WHERE products.name LIKE $1 OR
@@ -179,7 +179,7 @@ module.exports = (db) => {
     });
   });
 
-  //GET /products/search
+  //POST /products/filter
   router.post('/filter', (req, res) => {
     let queryString = `SELECT * From products
     WHERE products.price LIKE $1 OR
