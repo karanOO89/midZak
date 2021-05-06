@@ -2,10 +2,10 @@
   This file create QuerY Strings and Value Array for That
  */
 
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const multer  = require('multer');
-const messages = require('./messages');
+// const multer  = require('multer');
+// const messages = require('./messages');
 //const imageToBase64 = require('image-to-base64');
 
 router.use((req, res, next) => {
@@ -16,64 +16,49 @@ router.use((req, res, next) => {
 });
 
 // SET multer STORAGE
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'public/uploads')
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now())
-  }
-})
+// var storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, 'public/uploads')
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, file.fieldname + '-' + Date.now())
+//   }
+// })
 
-const upload = multer({ storage: storage })
+// var upload = multer({ storage: storage })
 
 module.exports = (db) => {
-
   // GET /products/:id
   // View single product
-  router.get('/:id', (req, res) => {
-    db.query('SELECT * From products WHERE id = $1', [req.params.id])
-    .then((data) => {
-      console.log('data', data)
-      if(data.rows[0]){
-        const templateVars = {
-          product: data.rows[0]
-        };
-        res.render('product-page', templateVars);
-      }
-    })
-    .catch(err => {
-      res.redirect("/");
-    });
+  router.get("/:id", (req, res) => {
+    db.query("SELECT * From products WHERE id = $1", [req.params.id])
+      .then((data) => {
+        if (data.rows) {
+          const templateVars = {
+            product: data.rows[0],
+          };
+          res.render("product-page", templateVars);
+        }
+      })
+      .catch((err) => {
+        res.redirect("/");
+      });
   });
 
-  // GET /products/:id/message
-  router.get('/:id/messages', (req, res) => {
-    db.query('SELECT * From products WHERE id = $1', [req.params.id])
-    .then((data) => {
-      if(data.rows[0]){
-
-        const product = data.rows[0];
-
-        //product ID
-        console.log(product.id)
-        // sender ID
-        // This should be logged in user ID
-
-        const templateVars = {
-          product: product
-        };
-        res.render('product-message', templateVars);
-      } else {
-        res.redirect("/");
-      }
-    })
-    .catch(err => {
-      res
-          .status(500)
-          .json({ error: err.message });
-    });
-  })
+  router.post("/:id/delete", (req, res) => {
+    // console.log(req.body.productId);
+    db.query(`DELETE FROM products WHERE id = $1`, [req.body.productId])
+      .then(() => {
+        // res.json(200,"ok");
+        // console.log("data",data)
+        return res.redirect("/");
+      })
+      .catch((err) => {
+        console.log("err",err)
+        res.status(500).json({ error: err.message });
+      });
+  });
+  //
 
   // GET /products
   router.get('/', (req, res) => {
@@ -155,7 +140,7 @@ module.exports = (db) => {
      });
   })
 
-  //GET /products/search
+  //search
   router.post('/search', (req, res) => {
     let queryString = `SELECT * From products
     WHERE products.name LIKE $1 OR
@@ -179,7 +164,7 @@ module.exports = (db) => {
     });
   });
 
-  //GET /products/search
+  //filter
   router.post('/filter', (req, res) => {
     let queryString = `SELECT * From products
     WHERE products.price LIKE $1 OR
@@ -203,26 +188,6 @@ module.exports = (db) => {
     });
   });
 
-  //POST /products/delete/:id
-  // router.get('/:id', (req, res) => {
-  //   let queryString = `SELECT * From products WHERE id = $1`;
-  //   const queryParams= [
-  //     req.body.product_name,
-  //     req.body.description,
-  //     Number(req.body.price),
-  //     Number(req.body.stock),
-  //     req.file
-  //   ];
-  //   db.query(queryString,queryParams)
-  //   .then((data) => {
-  //     data.rows[0];
-  //   })
-  //   .catch(err => {
-  //     res
-  //       .status(500)
-  //       .json({ error: err.message });
-  //   });
-  // });
 
   return router;
-}
+};

@@ -6,7 +6,7 @@ CREATE TABLE users (
   email VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
   phone VARCHAR(255),
-  user_type_id INTEGER NOT NULL REFERENCES user_type(id) ON DELETE CASCADE,
+  user_type_id INTEGER ,
   address_id INTEGER
 );
 
