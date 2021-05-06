@@ -10,7 +10,6 @@ const bodyParser = require("body-parser");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
-const path = require('path');
 const cookieSession = require('cookie-session');
 // //Using express-session in app with secret key
 app.use(cookieSession({

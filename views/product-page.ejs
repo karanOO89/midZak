@@ -56,17 +56,15 @@
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
               <!-- Logged in as <a href="#" class="navbar-link">Username</a> -->
-              <a href="#myModal" role="button" class="btn" data-toggle="modal"
-                >Login / Signup</a
-              >
+              <a href="/login" role="button" class="btn" data-toggle="modal">Login / Signup</a>
             </p>
             <ul class="nav">
               <li class="active"><a href="/upload">Sell</a></li>
               <li><a href="#about">Favourites</a></li>
               <li><a href="#contact">Inbox</a></li>
             </ul>
-            <form class="navbar-search pull-left">
-              <input type="text" class="search-query" placeholder="Search" />
+            <form action="/products/search" method="POST" role="search" class="navbar-search pull-left">
+              <input type="text" class="search-query" placeholder="Search">
             </form>
           </div>
           <!--/.nav-collapse -->
@@ -102,13 +100,7 @@
         <!--/span Product Specific-->
 
         <div class="card">
-          <img
-            class="product-image"
-            id="main-product-image"
-            src="jeans3.jpg"
-            alt="Denim Jeans"
-            style="width: 100%"
-          />
+          <img class="product-image" id="main-product-image" src="uploads/<%= product.thumbnail %>.png" alt="Denim Jeans" style="width:100%">
           <h1 id="product-name"><%= product.name %></h1>
 
           <p id="product-price" class="price">$<%= product.price %></p>
