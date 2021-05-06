@@ -25,7 +25,7 @@ module.exports = (db) => {
           .then(data => {
             req.session.user_id = data.rows[0].id;
             console.log("new user:",req.session);
-            res.redirect("/products");
+            res.redirect("/");
           })
           .catch(err => {
             res
@@ -35,7 +35,7 @@ module.exports = (db) => {
         } else {
           req.session.user_id = data.rows[0].id;
           console.log("existing user:",req.session);
-          res.redirect("/products");
+          res.redirect("/");
         }
       })
       .catch(err => {

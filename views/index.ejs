@@ -30,6 +30,47 @@
               <li><a href="#">Accessories</a></li>
             </ul>
           </div>
+<!-- <style>
+    .box{
+        color: #fff;
+        padding: 20px;
+        display: none;
+        margin-top: 20px;
+    }
+    .red{ background: #db7e7e; }
+    .green{ background: #228B22; }
+    .blue{ background: #0000ff; }
+</style>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("select").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue = $(this).attr("value");
+            if(optionValue){
+                $(".box").not("." + optionValue).hide();
+                $("." + optionValue).show();
+            } else{
+                $(".box").hide();
+            }
+        });
+    }).change();
+});
+</script>
+</head>
+<body>
+    <div>
+        <select>
+            <option>Choose A Filter</option>
+            <option value="red">Specific User</option>
+            <option value="green">Price Descending</option>
+            <option value="blue">Price Ascending</option>
+        </select>
+    </div>
+    <div class="red box">You have selected <strong>Seller Id = 1</strong> so you are browsing only products listing by this user.</div>
+    <div class="green box">You have selected <strong>Price - Descending</strong> so .....</div>
+    <div class="blue box">You have selected <strong>Price - Ascending</strong> so ......</div> -->
+          <!--/.well -->
         </div>
         <!-- SIDE BAR MENU END-->
 

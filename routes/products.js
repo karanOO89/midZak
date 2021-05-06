@@ -8,6 +8,13 @@ const multer  = require('multer');
 const messages = require('./messages');
 //const imageToBase64 = require('image-to-base64');
 
+router.use((req, res, next) => {
+  if(!req.session.user_id) {
+    res.redirect('/login');
+  }
+  next();
+});
+
 // SET multer STORAGE
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -18,7 +25,7 @@ var storage = multer.diskStorage({
   }
 })
 
-var upload = multer({ storage: storage })
+const upload = multer({ storage: storage })
 
 module.exports = (db) => {
 
@@ -68,90 +75,58 @@ module.exports = (db) => {
     });
   })
 
-  // PUT /products/:id
-  // Edit a single product
-  router.put('/:id', (req, res) => {
-
-  // router.use((req, res, next) => {
-  //   if(!req.session.user_id) {
-  //     res.redirect('/login');
-  //   }
-  //   next();
-  // });
-  });
   // GET /products
   router.get('/', (req, res) => {
+    //res.render("product_upload");
+    let queryString = `SELECT * From products LIMIT 10;`;
+    let queryParams =[];
+    console.log(reg,body)
+
+    if (req.body.owner_id) {
+      queryParams.push(req.body.owner_id);
+      queryString += `WHERE user_id = $${queryParams.length} `;
+    };
+    if (req.body.price) {
+      queryParams.push(req.body.price);
+      queryString += `AND ORDER BY products.price $${queryParams.length}`;
+    };
+
+    queryParams.push(req.body.limit);
+    queryString += `
+    LIMIT $${queryParams.length};
+    `;
+    db.query(queryString,queryParams)
+      .then(data => {
+        console.log(req.params)
+        const templateVars = {
+          data: data.rows
+        };
+        //console.log("hhhh", data.rows);
+
+        res.render("index", templateVars)
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+
+  // POST /products/new
+   router.post('/new', upload.single("thumbnail"), (req, res) => {
     res.render("product_upload");
-    let queryString = `SELECT * From products LIMIT 10;`;
-    let queryParams =[];
-    db.query(queryString,queryParams)
-      .then(data => {
-        console.log(req.params)
-        const products = data.rows;
-        res.json({ products });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  });
-
-  // GET /products/search
-  router.get('/search', (req, res) => {
-    let queryString = `SELECT * From products LIMIT 10;`;
-    let queryParams =[];
-    db.query(queryString,queryParams)
-      .then(data => {
-        console.log(req.params)
-        const products = data.rows;
-        res.json({ products });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  });
-
-  // GET /products/search
-  router.get('/search', (req, res) => {
-    let queryString = `SELECT * From products LIMIT 10;`;
-    let queryParams =[];
-    db.query(queryString,queryParams)
-      .then(data => {
-        console.log(req.params)
-        const products = data.rows;
-        res.json({ products });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  });
-  // POST /products
-   router.post('/', upload.single("thumbnail"), (req, res) => {
     const obj = Object.assign({},req.body);
     console.log(obj);
     let query = `INSERT INTO products
-      (name,
+    (name,
       description,
       price,
       stock,
       user_id,
       thumbnail
-      ) VALUES($1, $2, $3, $4, $5, $6)`; 
+      ) VALUES($1,$2,$3,$4,$5,$6) RETURNING id;`;
 
-      // VALUES($1,$2,$3,$4,$5)`;
-    // const values= [
-    //   req.body.product_name,
-    //   req.body.description,
-    //   Number(req.body.price),
-    //   Number(req.body.stock),
-    //   req.file
-    // ];
-      
     const values= [
       obj.product_name,
       obj.description,
@@ -160,12 +135,17 @@ module.exports = (db) => {
       req.session.user_id,
       req.file.path
     ];
-    //console.log("product user:",req.session.user_id, values);
-    db.query(query,values)
-     .then((data) => {
-      //console.log(data.rows);
-      res.redirect("/");
-     })
+    db.query(query, values)
+      .then((data) => {
+        db.query(`SELECT * FROM products WHERE id = ${data.rows[0].id};`)
+        .then((data) => {
+          const templateVars = {
+            product: data.rows[0]
+          };
+          res.render("product-page", templateVars);
+         //console.log("inside query:", data.rows[0]);
+        });
+      })
      .catch(err => {
        res
          .status(500)
@@ -175,19 +155,22 @@ module.exports = (db) => {
      });
   })
 
-  //GET /products/edit/:id
-  router.get('/:id', (req, res) => {
-    let queryString = `SELECT * From products WHERE id = $1`;
+  //GET /products/search
+  router.post('/search', (req, res) => {
+    let queryString = `SELECT * From products
+    WHERE products.name LIKE $1 OR
+    products.description LIKE $1;`;
     const queryParams= [
-      req.body.product_name,
-      req.body.description,
-      Number(req.body.price),
-      Number(req.body.stock),
-      req.file
+      `%${req.body.search}%`
     ];
+    console.log("before query:", req.params, req.body);
     db.query(queryString,queryParams)
     .then((data) => {
-      data.rows[0];
+      console.log(data.rows)
+      const templateVars = {
+        data: data.rows
+      };
+      res.render("index", templateVars);
     })
     .catch(err => {
       res
@@ -195,6 +178,51 @@ module.exports = (db) => {
         .json({ error: err.message });
     });
   });
+
+  //GET /products/search
+  router.post('/filter', (req, res) => {
+    let queryString = `SELECT * From products
+    WHERE products.price LIKE $1 OR
+    products.description LIKE $1;`;
+    const queryParams= [
+      `%${req.body.search}%`
+    ];
+    console.log("before query:", req.params, req.body);
+    db.query(queryString,queryParams)
+    .then((data) => {
+      console.log(data.rows)
+      const templateVars = {
+        data: data.rows
+      };
+      res.render("index", templateVars);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+  });
+
+  //POST /products/delete/:id
+  // router.get('/:id', (req, res) => {
+  //   let queryString = `SELECT * From products WHERE id = $1`;
+  //   const queryParams= [
+  //     req.body.product_name,
+  //     req.body.description,
+  //     Number(req.body.price),
+  //     Number(req.body.stock),
+  //     req.file
+  //   ];
+  //   db.query(queryString,queryParams)
+  //   .then((data) => {
+  //     data.rows[0];
+  //   })
+  //   .catch(err => {
+  //     res
+  //       .status(500)
+  //       .json({ error: err.message });
+  //   });
+  // });
 
   return router;
 }

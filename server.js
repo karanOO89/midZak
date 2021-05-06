@@ -10,7 +10,6 @@ const bodyParser = require("body-parser");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
-const path = require('path');
 const cookieSession = require('cookie-session');
 // //Using express-session in app with secret key
 app.use(cookieSession({
@@ -39,9 +38,8 @@ app.use("/styles", sass({
   outputStyle: 'expanded'
 }));
 app.use(express.static("public"));
-//app.use(fileUpload());
-//app.use(path());
-//app.use(storage());
+app.use(fileUpload());
+
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -53,6 +51,8 @@ const loginRoutes = require("./routes/login");
 const uploadRoutes = require("./routes/upload");
 const viewRoutes = require("./routes/view");
 const heartRoutes = require("./routes/heart");
+//const searchRoutes = require("./routes/search");
+
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -62,6 +62,8 @@ app.use("/api/widgets", widgetsRoutes(db));
 app.use("/upload", uploadRoutes(db));
 app.use("/heart", heartRoutes(db));
 app.use("/login", loginRoutes(db));
+//app.use("/search", searchRoutes(db));
+
 //app.use("/upload", uploadRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
