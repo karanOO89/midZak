@@ -15,6 +15,7 @@ module.exports = (db) => {
   db.query(`SELECT DISTINCT(products.*) ,favourites.id as fav_id, favourites.user_id as user_id ,favourites.product_id as fav_prod_id FROM products 
             LEFT OUTER JOIN favourites ON favourites.product_id = products.id 
             LEFT OUTER JOIN users ON users.id = favourites.user_id
+            ORDER BY products.price
              ;`) 
   .then(data => {
     const templateVars = {
