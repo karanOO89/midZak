@@ -80,6 +80,21 @@ module.exports = (db) => {
     //res.render("product_upload");
     let queryString = `SELECT * From products LIMIT 10;`;
     let queryParams =[];
+    console.log(reg,body)
+
+    if (req.body.owner_id) {
+      queryParams.push(req.body.owner_id);
+      queryString += `WHERE user_id = $${queryParams.length} `;
+    };
+    if (req.body.price) {
+      queryParams.push(req.body.price);
+      queryString += `AND ORDER BY products.price $${queryParams.length}`;
+    };
+
+    queryParams.push(req.body.limit);
+    queryString += `
+    LIMIT $${queryParams.length};
+    `;
     db.query(queryString,queryParams)
       .then(data => {
         console.log(req.params)
@@ -144,6 +159,30 @@ module.exports = (db) => {
   router.post('/search', (req, res) => {
     let queryString = `SELECT * From products
     WHERE products.name LIKE $1 OR
+    products.description LIKE $1;`;
+    const queryParams= [
+      `%${req.body.search}%`
+    ];
+    console.log("before query:", req.params, req.body);
+    db.query(queryString,queryParams)
+    .then((data) => {
+      console.log(data.rows)
+      const templateVars = {
+        data: data.rows
+      };
+      res.render("index", templateVars);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+  });
+
+  //GET /products/search
+  router.post('/filter', (req, res) => {
+    let queryString = `SELECT * From products
+    WHERE products.price LIKE $1 OR
     products.description LIKE $1;`;
     const queryParams= [
       `%${req.body.search}%`
