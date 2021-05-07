@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const app        = express();
-app.use(express.static("uploads"));
+
 
 router.use((req, res, next) => {
   if(!req.session.user_id) {
@@ -45,9 +44,14 @@ module.exports = (db) => {
       //console.log(values);
       db.query(query, values)
       .then((data) => {
-        // const upload = data.rows;
-        res.redirect("/");
-        // res.render("products_listing", { upload });
+        db.query(`SELECT * FROM products WHERE id = ${data.rows[0].id};`)
+        .then((data) => {
+          const templateVars = {
+            product: data.rows[0]
+          };
+          res.render("product-page", templateVars);
+         //console.log("inside query:", data.rows[0]);
+        });
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
