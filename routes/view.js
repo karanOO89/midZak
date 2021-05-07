@@ -2,14 +2,20 @@ const express = require('express');
 const router  = express.Router();
 module.exports = (db) => {
   router.get("/", (req, res) => {
+    let search = '';
+    if(req.query.search) {
+      search = `WHERE LOWER(products.name) LIKE '%${req.query.search.toLowerCase()}%'`;
+    }
     let orderBy = 'ORDER BY products.price ASC';
     if(req.query.price) {
       orderBy = 'ORDER BY products.price DESC';
     }
     let sql = `SELECT DISTINCT(products.*) ,favourites.id as fav_id, favourites.user_id as user_id ,favourites.product_id as fav_prod_id FROM products
     LEFT OUTER JOIN favourites ON favourites.product_id = products.id
+    ${search}
     ${orderBy}
     ;`;
+console.log(sql);
     //  LEFT OUTER JOIN users ON users.id = favourites.user_id
     db.query(sql)
     .then(data => {
