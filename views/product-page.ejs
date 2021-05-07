@@ -3,11 +3,11 @@
 
 
 
+
     <!-- Head -->
     <%- include('partials/head') %>
-
     <script type="text/javascript" src="/scripts/product-page.js"></script>
-
+  <body>
     <!-- Nav -->
     <%- include('partials/nav') %>
 
@@ -15,75 +15,44 @@
     <%- include('partials/login-modal') %>
 
     <!-- Product -->
-    <div class="container-fluid">
-          <div class="row-fluid">
-            <div class="span6">
-              <div style="margin: 100px">
-                <img src="/uploads/<%= product.thumbnail %>" />
-              </div>
-            </div>
-            <div class="span3" style="margin-top: 100px;">
-              <span>
-                <h1 id="product-name"><%= product.name %></h1>
-              </span>
-
-              <h2 id="product-price" class="price">$<%= product.price %></h2>
-              <label for="description" class="fcf-label">Description:</label>
-              <p id="product-description"><%= product.description %></p>
-              <label for="stock" class="fcf-label">Stock:</label>
-              <p id="product-description"><%= product.stock %></p>
-
-
-              <div class="fcf-body" >
-                <div id="fcf-form">
-                  <button type="button" id="btnHide">Hide Message Form</button>
-                  <form
-                    id="fcf-form-id"
-                    class="fcf-form-class"
-                    > <div id="showMessages">
-
-                    </div>
-                    <div class="fcf-form-group" >
-                      <div class="fcf-input-group">
-                      <div id="noValid">
-                        <p>please enter text below</p>
-                      </div>
-                        <textarea
-                        id="Message"
-                        name="Message"
-                        class="fcf-form-control"
-                        rows="6"
-                        maxlength="3000"
-                        required
-                        placeholder="Your message"
-                        ></textarea>
-                      </div>
-                    </div>
-                    <div class="fcf-form-group">
-                      <input type="hidden" id="product_id"
-                      value="<%= product.id %>" name="product_id" >
-
-                    </input>
-                    <button
-                    type="button"
-                    id="fcf-button"
-                    class="fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block"
-                    data-productid="<%= product.id %>"
-                    >
-                    Send Message
-                  </button>
-
-                </div>
-
-                <div class="fcf-credit" id="fcf-credit"></div>
-                </form>
-
-
-
-
-            </div>
+    <div class="row-fluid">
+      <div class="span4">
+        <div class="thumbnail" style="margin-left: 100px;">
+          <img src="/uploads/<%= product.thumbnail %>" style="width: 300px;">
+          <div class="caption">
+            <h3><%= product.name %></h3>
+            <h4>Price: $<%= product.price %></h4>
+            <h4>Stock: <%= product.stock %></h4>
+            <p><%= product.description %></p>
           </div>
         </div>
+      </div>
+      <div class="span8">
+        <form>
+          <fieldset>
+            <div class="row-fluid">
+              <div class="span6">
+                <legend>Leave a message</legend>
+                <label>Ask a question</label>
+                <textarea id="Message" name="Message" class="fcf-form-control" rows="6" maxlength="3000" requiredplaceholder="Your message"></textarea>
+                <input type="hidden" id="product_id" value="<%= product.id %>" name="product_id" ></input>
+                <br>
+                <button type="button" id="fcf-button" class="btn fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block" data-productid="<%= product.id %>">Send Message</button>
+              </div>
+              <div class="span6">
+                <div style="margin-right: 100px">
+                  <legend>Messages</legend>
+                  <form id="fcf-form-id" class="fcf-form-class"> <div id="showMessages"></div>
+                    <div class="fcf-credit" id="fcf-credit"></div>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
 
   </body>
 </html>
