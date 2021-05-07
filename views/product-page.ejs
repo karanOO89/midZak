@@ -6,6 +6,7 @@
 
     <!-- Head -->
     <%- include('partials/head') %>
+    <link rel="stylesheet" href="/styles/product.css" type="text/css" />
     <script type="text/javascript" src="/scripts/product-page.js"></script>
   <body>
     <!-- Nav -->
@@ -15,10 +16,11 @@
     <%- include('partials/login-modal') %>
 
     <!-- Product -->
+    <div class =" disHead">
     <div class="row-fluid">
       <div class="span4">
         <div class="thumbnail" style="margin-left: 100px;">
-          <img src="/uploads/<%= product.thumbnail %>.png" style="width: 300px;">
+          <img src="/uploads/<%= product.thumbnail %>.png" style="height :350px;width: 450px;">
           <div class="caption">
             <h3><%= product.name %></h3>
             <h4>Price: $<%= product.price %></h4>
@@ -27,25 +29,34 @@
           </div>
         </div>
       </div>
+      
       <div class="span8">
+        
         <form>
           <fieldset>
             <div class="row-fluid">
               <div class="span6">
+                
                 <legend>Leave a message</legend>
                 <label>Contact Seller</label>
+                <div id="noValid">
+                  <p>Please enter text below</p>
+                </div>
                 <textarea id="Message" placeholder="Ask a question..." name="Message" class="fcf-form-control" rows="6" maxlength="3000" requiredplaceholder="Your message"></textarea>
                 <input type="hidden" id="product_id" value="<%= product.id %>" name="product_id" ></input>
                 <br>
                 <button type="button" id="fcf-button" class="btn fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block" data-productid="<%= product.id %>">Send Message</button>
               </div>
+              
               <div class="span6">
                 <div style="margin-right: 100px">
                   <legend>Messages</legend>
                   <form id="fcf-form-id" class="fcf-form-class"> <div id="showMessages"></div>
                     <div class="fcf-credit" id="fcf-credit"></div>
                   </form>
-
+                  
+                </div>
+                                  
                 </div>
               </div>
             </div>
@@ -53,6 +64,16 @@
         </form>
       </div>
     </div>
+  </div>
+     <div class ="sold_delete">
+      <% if (product.is_for_sale) { %>
+        <button type="button" id="sold" class="btn fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block"data-productid="<%= product.id %>">Mark it as Sold</button>
+        <label id="p_sold_hidden">This item is sold! </label>
+        <% } else { %>
+      <label id="p_sold">This item is sold! </label>
+      <% } %>
+      <button style="color:crimson"type="button" id="btnDelte" class ="btn fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block"data-productid="<%= product.id %>">Delete</button>
+      </div>
 
   </body>
-</html>
+  </html>

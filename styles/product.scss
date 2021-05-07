@@ -1,9 +1,47 @@
-
-.fcf-body{
-  display:none ;
-}
+// .fcf-body{
+//   display:none ;
+// }
 #noValid{
   display:none ;
   color: red;
-  // background-color:aquamarine
+}
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 4em;
+  width: 100%;
+
+  .disHead {
+    min-height: 500px;
+   
+  }
+  #Message {
+    min-width: 250px;
+    max-width: 545px;
+  }
+  .sold_delete {
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
+    padding-left: 220px;
+    align-items: center;
+    margin-top: 1em;
+    #p_sold_hidden{
+      display: none;
+
+    }
+    #p_sold_hidden{
+      color: rgba(255, 0, 0, 0.678);
+    }
+
+    #p_sold {
+      color: rgba(255, 0, 0, 0.678);
+    }
+    #btnDelte {
+      margin-top: 5px;
+      max-width: 5em;
+      // margin-left: 280px;
+    }
+  }
 }

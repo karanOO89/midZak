@@ -28,6 +28,21 @@ $(document).ready(function () {
       $("#noValid").slideUp();
     }
   });
+
+  $("#sold").on("click", function (e) {
+    e.preventDefault();
+    let productId = $("#sold").data("productid");
+    $.ajax({
+      url: "/products/"+productId+"/sold",
+      type: "post",
+      success: function (result) {
+        // console.log(result) 
+        $("#sold").hide();
+        $("#p_sold_hidden").show();
+      },
+    });
+  });
+
   $("#fcf-button").on("click", function (e) {
     e.preventDefault();
     if ($("#Message").val().length === 0) {
@@ -62,7 +77,7 @@ $(document).ready(function () {
       success: function (result) {
         $("#showMessages").empty();
         for (let ele in result) {
-          $("#showMessages").append(`<p>${result[ele]["message"]}\n</p>`);
+          $("#showMessages").append(`<p>${result[ele]["sender_id"]}`+` `+`${result[ele]["message"]}\n</p>`);
         }
       },
       error: function (error) {

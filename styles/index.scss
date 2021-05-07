@@ -57,3 +57,13 @@
 // .icon-heart{
 //   color: red ;
 // }
+.thumbnail{
+    position: relative;
+}
+.soldBadge{
+    background-color:rgb(219, 86, 33);
+    color:white;
+    padding: 4px;
+    position:absolute ;
+    right: 0
+}

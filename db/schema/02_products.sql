@@ -9,7 +9,7 @@ CREATE TABLE products (
   stock INTEGER  NOT NULL,
   is_approved Boolean NOT NULL DEFAULT true,
   is_for_sale Boolean NOT NULL DEFAULT true,
-  user_id INTEGER  NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  user_id INTEGER  ,
   thumbnail VARCHAR(255) NOT NULL
 );
 
