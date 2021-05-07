@@ -1,6 +1,5 @@
 node_modules/
 public/styles
-public/uploads
 .env
 *.log
 *.sqlite3
