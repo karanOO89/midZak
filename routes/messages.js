@@ -21,21 +21,21 @@ module.exports = (db) => {
 
   // GET /messages
   // router.get("/:id", (req, res) => {
-    // res.render("product-message");
-    // let queryString = `SELECT * From messages LIMIT 10;`;
-    // let queryParams =[];
-    // db.query(queryString,queryParams)
-    //   .then(data => {
-    //     console.log(req.params)
-    //     const products = data.rows;
-    //     res.json({ products });
-    //   })
-    //   .catch(err => {
-    //     res
-    //       .status(500)
-    //       .json({ error: err.message });
-    //   });
-    // console.log(req.body);
+  // res.render("product-message");
+  // let queryString = `SELECT * From messages LIMIT 10;`;
+  // let queryParams =[];
+  // db.query(queryString,queryParams)
+  //   .then(data => {
+  //     console.log(req.params)
+  //     const products = data.rows;
+  //     res.json({ products });
+  //   })
+  //   .catch(err => {
+  //     res
+  //       .status(500)
+  //       .json({ error: err.message });
+  //   });
+  // console.log(req.body);
   // });
 
   // GET /messages/search
@@ -57,32 +57,32 @@ module.exports = (db) => {
   // POST /messages
   // GET /products/:id/message
   // router.get("/:id", (req, res) => {
-    // console.log(req.params);
-    // db.query('SELECT * From products WHERE id = $1', [req.params.id])
-    // .then((data) => {
-    //   if(data.rows[0]){
+  // console.log(req.params);
+  // db.query('SELECT * From products WHERE id = $1', [req.params.id])
+  // .then((data) => {
+  //   if(data.rows[0]){
 
-    //     const product = data.rows[0];
+  //     const product = data.rows[0];
 
-    //     //product ID
-    //     console.log(product.id)
-    //     // sender ID
-    //     // This should be logged in user ID
+  //     //product ID
+  //     console.log(product.id)
+  //     // sender ID
+  //     // This should be logged in user ID
 
-    //     const templateVars = {
-    //       product: product
-    //     };
-    //     res.render('product-message', templateVars);
-    //   } else {
-    //     res.redirect("/");
-    //   }
-    // })
-    // .catch(err => {
-    //   res
-    //       .status(500)
-    //       .json({ error: err.message });
-    // });
-  // 
+  //     const templateVars = {
+  //       product: product
+  //     };
+  //     res.render('product-message', templateVars);
+  //   } else {
+  //     res.redirect("/");
+  //   }
+  // })
+  // .catch(err => {
+  //   res
+  //       .status(500)
+  //       .json({ error: err.message });
+  // });
+  //
 
   router.post("/:id", (req, res) => {
     //  console.log("message:",req.body)
@@ -94,32 +94,32 @@ module.exports = (db) => {
     const values = [message, 1, Number(product_id), 3];
     db.query(query, values)
       .then(() => {
-       res.json(200,"ok")
+        res.json(200, "ok");
       })
       .catch((err) => {
         console.log("error:", err);
         res.status(500).json({ error: err.message });
       });
   });
-  
 
-router.get("/:id", (req, res) => {
-let query2 = `SELECT id,message,sender_id FROM messages WHERE product_id = $1 AND sender_id = $2 `;
+  router.get("/:id", (req, res) => {
+    let query2 = `SELECT messages.id,messages.message,messages.sender_id,users.name as name FROM messages
+                  JOIN users ON users.id = messages.sender_id
+                  WHERE product_id = $1 AND messages.sender_id = $2 `;
 
-const product_id = req.params.id;
-const sender_id = req.query.userId;
-const values2 = [product_id, sender_id];
+    const product_id = req.params.id;
+    const sender_id = req.query.userId;
+    const values2 = [product_id, sender_id];
 
-db.query(query2, values2)
-  .then((data) => {
-    // console.log(data.rows)
-    res.json(200, data.rows);
-    
-  })
-  .catch((err) => {
-    // console.log("error:", err);
-    res.status(500).json({ error: err.message });
+    db.query(query2, values2)
+      .then((data) => {
+        // console.log(data.rows)
+        res.json(200, data.rows);
+      })
+      .catch((err) => {
+        // console.log("error:", err);
+        res.status(500).json({ error: err.message });
+      });
   });
-});
-return router;
+  return router;
 };

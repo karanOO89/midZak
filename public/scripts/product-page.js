@@ -77,7 +77,9 @@ $(document).ready(function () {
       success: function (result) {
         $("#showMessages").empty();
         for (let ele in result) {
-          $("#showMessages").append(`<p>${result[ele]["sender_id"]}`+` `+`${result[ele]["message"]}\n</p>`);
+          if(result[ele]["message"]){
+          $("#showMessages").append(`<p>${result[ele]["name"]}:`+`&nbsp;${result[ele]["message"]}\n</p>`);
+          }
         }
       },
       error: function (error) {
