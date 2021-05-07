@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
     <!-- Head -->
     <%- include('partials/head') %>
+
+    <script type="text/javascript" src="/scripts/product-page.js"></script>
 
     <!-- Nav -->
     <%- include('partials/nav') %>
@@ -28,8 +32,6 @@
               <p id="product-description"><%= product.description %></p>
               <label for="stock" class="fcf-label">Stock:</label>
               <p id="product-description"><%= product.stock %></p>
-              <form action="/products/<%= product.id %>/messages" method="GET">
-              <p><button type="submit">Contact Seller</button></p>
 
 
               <div class="fcf-body" >
