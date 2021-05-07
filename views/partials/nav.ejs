@@ -8,17 +8,24 @@
           type="button"
           class="btn btn-navbar"
           data-toggle="collapse"
-          data-target=".nav-collapse"
-        >
+          data-target=".nav-collapse">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
         <a class="brand" href="/">MidZak</a>
         <div class="nav-collapse collapse">
+          <!-- <% if (user.email) { %> -->
+
+            <div>
+            <!-- Logged in as: <%= user.email %> -->
+              <button type="submit" class="btn btn-outline-primary ml-3 pull right">Logout</button>
+            </div>
+          <!-- <% } else { %> -->
           <p class="navbar-text pull-right">
             <a href="#myModal" style="margin: 8px" role="button" class="btn" data-toggle="modal" >Login</a>
           </p>
+          <!-- <% } %> -->
           <ul class="nav">
             <li class="active"><a href="/upload">Sell</a></li>
           </ul>
