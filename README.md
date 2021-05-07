@@ -41,3 +41,17 @@ The following steps are only for _one_ of the group members to perform.
 - Node 10.x or above
 - NPM 5.x or above
 - PG 6.x
+
+Pictures:
+
+![Screenshot from 2021-05-07 13-09-26](https://user-images.githubusercontent.com/65080348/117497938-5b500e00-af36-11eb-9498-a5e4be539fbb.png)
+HomePage where one can browse the items,search the items and mark it as favourites.
+-----------------------------------------------------------------------------------
+
+![Screenshot from 2021-05-07 13-05-41](https://user-images.githubusercontent.com/65080348/117497941-5c813b00-af36-11eb-9f02-ab912541e77f.png)
+Page to upload the images.
+--------------------------
+![Screenshot from 2021-05-07 13-07-27](https://user-images.githubusercontent.com/65080348/117497940-5be8a480-af36-11eb-8b2b-4ed432fa5a3d.png)
+Product page where one send messages , mark items as sold and delete the items.
+-------------------------------------------------------------------------------
+
