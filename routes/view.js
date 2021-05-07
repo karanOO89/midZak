@@ -16,6 +16,7 @@ module.exports = (db) => {
       const templateVars = {
         data: data.rows
       };
+      console.log(templateVars);
       res.render("index",templateVars);
     })
     .catch(err => {
@@ -24,5 +25,6 @@ module.exports = (db) => {
         .json({ error: err.message });
     });
   });
+  
   return router;
 };

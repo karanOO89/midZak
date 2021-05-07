@@ -28,6 +28,20 @@ $(document).ready(function () {
       $("#noValid").slideUp();
     }
   });
+
+  $("#sold").on("click", function (e) {
+    e.preventDefault();
+    let productId = $("#sold").data("productid");
+    $.ajax({
+      url: "/products/"+productId+"/sold",
+      type: "post",
+      success: function (result) {
+        console.log(result) 
+        $("#sold").hide();
+      },
+    });
+  });
+
   $("#fcf-button").on("click", function (e) {
     e.preventDefault();
     if ($("#Message").val().length === 0) {
