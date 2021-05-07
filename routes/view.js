@@ -15,7 +15,6 @@ module.exports = (db) => {
     ${search}
     ${orderBy}
     ;`;
-console.log(sql);
     //  LEFT OUTER JOIN users ON users.id = favourites.user_id
     db.query(sql)
     .then(data => {
